@@ -1,13 +1,17 @@
 package entities;
 
 import javax.swing.*;
-import java.util.Timer;
+import java.util.List;
+
 
 public class Teacher extends Person {
 
     private String personalEmail;
     private String workEmail;
     private float Due;
+
+    private List<Module> teacherModules ;
+    private List<Group> groupsByTeacher ;  //many to many or one to many ???
 
     public String getPersonalEmail() {
         return personalEmail;

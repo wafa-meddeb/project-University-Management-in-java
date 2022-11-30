@@ -1,5 +1,8 @@
 package entities;
 import lombok.*;
+
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -10,4 +13,8 @@ public class Group {
     private int StudentsNumber;
     private String email;
     private String StudyLevel;
+
+    private List<Module> groupModules ;
+    private List<Student> students ;
+    private List<Teacher> teachersByGroup ;
 }

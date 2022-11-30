@@ -14,10 +14,8 @@ public class Session {
     private String Goal;
     private String Summary;
     private String tools;//not required
-    private int moduleId;
     private SessionState sessionState;
     private SessionType sessionType;
 
-    @ManyToOne
     private Module module;
 }

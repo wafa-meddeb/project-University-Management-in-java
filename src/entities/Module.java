@@ -1,6 +1,5 @@
 package entities;
 import lombok.*;
-import java.persistence.*;
 import java.util.List;
 
 import lombok.*;
@@ -11,13 +10,15 @@ import lombok.*;
 
 public class Module {
     private int Id;
-    private String Name;
-    private int Due;
+    private static String Name;
+    private float Due;
     private String StudyLevel;
     //relation between session and module
     private ModuleType moduleType;
     //la relation entre teacher et module
 
-    @OneToMany
-    List<Session> sessions ;
+    private List<Session> sessions ;
+    private List<Teacher> teachers ;
+    private List<Group> groups ;
+
 }
