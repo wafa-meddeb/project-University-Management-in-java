@@ -1,23 +1,47 @@
 package entities;
 
+import java.time.LocalTime;
 import java.util.List;
-import java.util.Timer;
 import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Session {
-    private int Id;
-    private Timer StartTime;
-    private Timer EndTime;
-    private String ClassroomNumber = null;//not required
-    private String Goal;
-    private String Summary;
-    private String tools = null;//not required
+    private int id;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private String classroomNumber; //not required
+    private String goal;
+    private String summary;
+    private String tools; //not required
     private SessionState sessionState;
     private SessionType sessionType;
 
     private Module module;
     private List<Absence> absenceBySession;
+
+    public Session(int id, LocalTime startTime, LocalTime endTime, String classroomNumber, String goal, String summary, String tools, SessionState sessionState, SessionType sessionType, Module module, List<Absence> absenceBySession) {
+        this.id = id;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.goal = goal;
+        this.summary = summary;
+        this.sessionState = sessionState;
+        this.sessionType = sessionType;
+        this.module = module;
+        this.absenceBySession = absenceBySession;
+        if (tools != null){
+            this.tools = tools;
+        }
+        else{
+            this.tools = null ;
+        }
+        if (classroomNumber != null){
+            this.classroomNumber = classroomNumber;
+        }
+        else{
+            this.classroomNumber = null ;
+        }
+    }
 }

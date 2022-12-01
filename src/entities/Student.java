@@ -2,7 +2,7 @@ package entities;
 
 import javax.swing.*;
 import java.time.LocalDate;
-import java.util.Date;
+
 
 public class Student extends Person {
 

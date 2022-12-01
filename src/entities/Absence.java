@@ -7,18 +7,29 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Absence {
-        private int Id;
-        private LocalDate Date;
-        private String Motif = null;//not required option
-        private String Justification = null;//not required
+        private int id;
+        private LocalDate date;
+        private String motif ; //not required option
+        private String justification ; //not required
+        private List<Session> sessionsWithAbsence;
 
-//        private int sessionId;    //s7i7a wela 8alta??
-        //il faut faire une instance de type Session pour acceder a sessionId
-
-        private List<Session> SessionsWithAbsence;
-
-
-
+        public Absence(int id, LocalDate date, String motif, String justification, List<Session> sessionsWithAbsence) {
+                id = id;
+                date = date;
+                if (motif != null){
+                        this.motif = motif;
+                }
+                else{
+                        this.motif = null ;
+                }
+                if (justification != null){
+                        this.justification = justification;
+                }
+                else{
+                        this.justification = null ;
+                }
+                sessionsWithAbsence = sessionsWithAbsence;
+        }
 }

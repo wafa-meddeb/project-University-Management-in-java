@@ -13,9 +13,7 @@ public class Module {
     private static String Name;
     private float Due;
     private String StudyLevel;
-    //relation between session and module
     private ModuleType moduleType;
-    //la relation entre teacher et module
 
     private List<Session> sessions ;
     private List<Teacher> teachers ;
