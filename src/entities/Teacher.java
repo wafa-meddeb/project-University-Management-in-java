@@ -11,7 +11,7 @@ public class Teacher extends Person {
     private float Due;
 
     private List<Module> teacherModules ;
-    private List<Group> groupsByTeacher ;  //many to many or one to many ???
+    private List<Group> groupsByTeacher ;
 
     public String getPersonalEmail() {
         return personalEmail;
