@@ -1,15 +1,19 @@
 package entities;
 
-import javax.swing.*;
+import enumeration.StudentSituation;
+import enumeration.StudentState;
+import lombok.ToString;
 import java.time.LocalDate;
+import java.util.List;
 
+
+@ToString
 
 public class Student extends Person {
 
     private StudentState studentState;
     private StudentSituation situation;
-    private Absence studentAbsence;
-
+    private List<Absence> studentAbsence;
     private LocalDate birthday;
 
     private Group group;
@@ -22,7 +26,7 @@ public class Student extends Person {
         return situation;
     }
 
-    public Absence getStudentAbsence() {
+    public List<Absence> getStudentAbsence() {
         return studentAbsence;
     }
 
@@ -41,18 +45,23 @@ public class Student extends Person {
     public void setSituation(StudentSituation situation) {
         this.situation = situation;
     }
-
-    public void setStudentAbsence(Absence studentAbsence) {
+    public void setStudentAbsence(List<Absence> studentAbsence) {
         this.studentAbsence = studentAbsence;
     }
 
-    public Student(int Id, String Name, String FamilyName, ImageIcon Photo, StudentState studentState, StudentSituation situation, Absence studentAbsence, LocalDate birthday) {
+    public Student(int Id, String Name, String FamilyName, byte[] Photo, StudentState studentState, StudentSituation situation,
+                   List<Absence> studentAbsence, LocalDate birthday) {
         super(Id, Name, FamilyName, Photo);
         this.studentState = studentState;
         this.situation = situation;
         this.studentAbsence = studentAbsence;
         this.birthday = birthday;
     }
+    public Student(){}
 
-
+    @Override
+    public String toString() {
+        return super.toString()+"\nStudent Absence : "+getStudentAbsence()+"\nStudent State : "+getStudentState()+"\nBirthday : "+getBirthday()+
+                "\nStudent Situation"+getSituation();
+    }
 }

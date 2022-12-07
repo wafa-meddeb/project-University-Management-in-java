@@ -38,10 +38,15 @@ public class Teacher extends Person {
     }
 
 
-    public Teacher(int Id, String Name, String FamilyName, ImageIcon Photo, String personalEmail, String workEmail, float due) {
-        super(Id, Name, FamilyName, Photo);
+    public Teacher(int Id, String Name, String FamilyName, byte[] Photo, String personalEmail, String workEmail, float due) {
+        super(Id, Name, FamilyName,Photo);
         this.personalEmail = personalEmail;
         this.workEmail = workEmail;
         this.Due = due;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"\npersonal email : "+getPersonalEmail()+"\nwork email : "+getWorkEmail()+"\nDue : "+getDue();
     }
 }

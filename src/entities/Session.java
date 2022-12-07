@@ -2,10 +2,13 @@ package entities;
 
 import java.time.LocalTime;
 import java.util.List;
+import enumeration.SessionState;
+import enumeration.SessionType;
 import lombok.*;
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 
 public class Session {
     private int id;
@@ -20,8 +23,14 @@ public class Session {
 
     private Module module;
     private List<Absence> absenceBySession;
+    private static int lastId=0;
+    public Session() {
+        this.id=++lastId;
+    }
 
-    public Session(int id, LocalTime startTime, LocalTime endTime, String classroomNumber, String goal, String summary, String tools, SessionState sessionState, SessionType sessionType, Module module, List<Absence> absenceBySession) {
+    public Session(int id, LocalTime startTime, LocalTime endTime, String classroomNumber, String goal,
+                   String summary, String tools, SessionState sessionState, SessionType sessionType, Module module,
+                   List<Absence> absenceBySession) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -44,4 +53,9 @@ public class Session {
             this.classroomNumber = null ;
         }
     }
-}
+    @Override
+    public String toString() {
+        return "Id : "+id+"\nStartTime : "+getStartTime()+"\nEnd Time : "+getEndTime()+"\nGoal : "+getGoal()
+                +"\nSummary : "+getSummary()+"\nTools : "+getTools()+"\nSession State : "+getSessionState()+"\nSession Type : "+getSessionType()
+                +"\nAbsence by session : "+getAbsenceBySession();
+    }}

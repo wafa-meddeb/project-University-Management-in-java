@@ -1,22 +1,32 @@
 package entities;
+import enumeration.ModuleType;
 import lombok.*;
 import java.util.List;
 
-import lombok.*;
 @Getter
 @Setter
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 
 public class Module {
-    private int Id;
-    private static String Name;
-    private float Due;
-    private String StudyLevel;
+    private int id;
+    private static String name;
+    private float due;
+    private String studyLevel;
     private ModuleType moduleType;
 
     private List<Session> sessions ;
     private List<Teacher> teachers ;
     private List<Group> groups ;
+    private static int lastId=0;
+    public Module() {
+        this.id=++lastId;
+    }
+    @Override
+    public String toString() {
+        return "Id : "+id+"\nName : "+Module.name+"\nDue : "+getDue()+"\nStudy Level : "+getStudyLevel()
+                +"\nmodule type : "+getModuleType()+"\nSession : "+getSessions()+"\nteachers : "+getTeachers()+
+                "\nGroup"+getGroups();
+    }
 
 }

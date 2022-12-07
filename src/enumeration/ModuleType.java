@@ -1,4 +1,4 @@
-package entities;
+package enumeration;
 
 public enum ModuleType {
     Optional,
