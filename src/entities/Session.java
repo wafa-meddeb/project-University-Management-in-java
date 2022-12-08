@@ -2,8 +2,8 @@ package entities;
 
 import java.time.LocalTime;
 import java.util.List;
-import enumeration.SessionState;
-import enumeration.SessionType;
+import Enumeration.SessionState;
+import Enumeration.SessionType;
 import lombok.*;
 @Getter
 @Setter

@@ -2,10 +2,10 @@
 import entities.Person;
 import entities.Session;
 import entities.Student;
-import enumeration.SessionState;
-import enumeration.SessionType;
-import enumeration.StudentSituation;
-import enumeration.StudentState;
+import Enumeration.SessionState;
+import Enumeration.SessionType;
+import Enumeration.StudentSituation;
+import Enumeration.StudentState;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -22,7 +22,7 @@ public class Main {
         malek.setBirthday(LocalDate.of(2002,04,07));
         malek.setName("malek");
         malek.setFamilyName("kammoun");
-        malek.setSituation(StudentSituation.New);
+        malek.setStudentSituation(StudentSituation.New);
 //        malek.setStudentAbsence();
         //malek.setPhoto(); kifech ndakhlou photo?
         Session Java=new Session();

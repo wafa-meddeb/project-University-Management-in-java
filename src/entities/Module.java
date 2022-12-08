@@ -1,5 +1,5 @@
 package entities;
-import enumeration.ModuleType;
+import Enumeration.ModuleType;
 import lombok.*;
 import java.util.List;
 
