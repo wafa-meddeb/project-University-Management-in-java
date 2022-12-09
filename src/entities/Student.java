@@ -2,11 +2,14 @@ package entities;
 
 import Enumeration.StudentSituation;
 import Enumeration.StudentState;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import java.time.LocalDate;
 import java.util.List;
 
-
+@Getter
+@Setter
 @ToString
 
 public class Student extends Person {
@@ -18,36 +21,7 @@ public class Student extends Person {
 
     private Group group;
 
-    public StudentState getStudentState() {
-        return studentState;
-    }
 
-    public StudentSituation getStudentSituation() {
-        return studentSituation;
-    }
-
-    public List<Absence> getStudentAbsence() {
-        return studentAbsence;
-    }
-
-    public LocalDate getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDate birthday) {
-        this.birthday = birthday;
-    }
-
-    public void setStudentState(StudentState studentState) {
-        this.studentState = studentState;
-    }
-
-    public void setStudentSituation(StudentSituation studentSituation) {
-        this.studentSituation = studentSituation;
-    }
-    public void setStudentAbsence(List<Absence> studentAbsence) {
-        this.studentAbsence = studentAbsence;
-    }
 
     public Student(int Id, String Name, String FamilyName, byte[] Photo, StudentState studentState, StudentSituation studentSituation,
                    List<Absence> studentAbsence, LocalDate birthday) {

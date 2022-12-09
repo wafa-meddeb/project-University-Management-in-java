@@ -102,8 +102,7 @@ public class Group implements GroupInterface {
                         students.get(index).setStudentAbsence((List<Absence>) newInfo);
                         break;
                     default:
-                        Group grp = new Group();
-                        students.get(index).setId((int) newInfo);
+                        students.get(index).setGroup((Group) newInfo);
 
                 }
 
@@ -113,7 +112,7 @@ public class Group implements GroupInterface {
             }
         }while ((i != index) || (i!=students.size()));
         if ((i == students.size()) && (i != index)){
-            System.out.println("the student you are going to update does not exist ");
+            System.out.println("the student you seek to update does not exist ");
 
         }
     }
@@ -195,7 +194,7 @@ public class Group implements GroupInterface {
             }
         }while ((i != index) || (i!=teachersByGroup.size()));
         if ((i == teachersByGroup.size()) && (i != index)){
-            System.out.println("the teacher you are going to update does not exist ");
+            System.out.println("the teacher you seek to update does not exist ");
 
         }
 
@@ -266,7 +265,7 @@ public class Group implements GroupInterface {
             }
         }while ((i != index) || (i!=groupModules.size()));
         if ((i == groupModules.size()) && (i != index)){
-            System.out.println("the module you are going to update does not exist ");
+            System.out.println("the module you seek to update does not exist ");
 
         }
 

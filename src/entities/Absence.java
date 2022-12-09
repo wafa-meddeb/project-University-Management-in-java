@@ -1,14 +1,18 @@
 package entities;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
+import Enumeration.SessionState;
+import Enumeration.SessionType;
+import interfaces.AbsenceInterface;
 import lombok.*;
 @Getter
 @Setter
 //@NoArgsConstructor
 
-public class Absence {
+public class Absence implements AbsenceInterface {
         private int id;
         private LocalDate date;
         private String motif ; //not required option
@@ -40,5 +44,96 @@ public class Absence {
         public String toString() {
                 return "Id : "+id+"\nLocal Date : "+getDate()+"\nMotif : "+getMotif()+"\nJustification : "+getJustification()
                         +"\nSession with absence : "+getSessionsWithAbsence();
+        }
+
+        @Override
+        public void addSession(Session session) {
+                sessionsWithAbsence.add(session);
+        }
+
+        @Override
+        public void removeSession(int index) {
+                int i=0;
+                do{
+                        if (i == index){
+                                sessionsWithAbsence.remove(sessionsWithAbsence.get(index));
+                        }
+                        else{
+                                i++;
+                        }
+                }while ((i != index) || (i!=sessionsWithAbsence.size()));
+
+        }
+
+        public enum SessionComponents{
+                startTime,
+                endTime,
+                classroomNumber,
+                goal,
+                summary,
+                tools,
+                sessionState,
+                sessionType,
+                module;
+
+
+        }
+        @Override
+        public void UpdateSession(int index, Absence.SessionComponents featureToUpdate, Object newInfo) {
+                int i=0;
+                do{
+
+                        if (i == index){
+                                switch(featureToUpdate){
+                                        case startTime:
+                                                sessionsWithAbsence.get(index).setStartTime((LocalTime) newInfo);
+                                                break;
+                                        case endTime:
+                                                sessionsWithAbsence.get(index).setEndTime(((LocalTime) newInfo));
+                                                break;
+                                        case classroomNumber:
+                                                sessionsWithAbsence.get(index).setClassroomNumber(((String) newInfo));
+                                                break;
+                                        case goal:
+                                                sessionsWithAbsence.get(index).setGoal(((String) newInfo));
+                                                break;
+                                        case summary:
+                                                sessionsWithAbsence.get(index).setSummary(((String) newInfo));
+                                                break;
+                                        case tools:
+                                                sessionsWithAbsence.get(index).setTools(((String) newInfo));
+                                                break;
+                                        case sessionState:
+                                                sessionsWithAbsence.get(index).setSessionState(((SessionState) newInfo));
+                                                break;
+                                        case sessionType:
+                                                sessionsWithAbsence.get(index).setSessionType(((SessionType) newInfo));
+                                                break;
+
+                                        default:
+                                                sessionsWithAbsence.get(index).setModule((Module) newInfo);
+
+                                }
+
+                        }
+                        else{
+                                i++;
+                        }
+                }while ((i != index) || (i!=sessionsWithAbsence.size()));
+                if ((i == sessionsWithAbsence.size()) && (i != index)){
+                        System.out.println("the session you seek to update does not exist ");
+
+                }
+
+        }
+
+        @Override
+        public Session GetSession(int index) {
+                return sessionsWithAbsence.get(index);
+        }
+
+        @Override
+        public List<Session> GetByCriteriaSession(Object criteria) {
+                return null;
         }
 }
