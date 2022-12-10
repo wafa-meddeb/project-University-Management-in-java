@@ -2,6 +2,7 @@ package entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import Enumeration.SessionState;
@@ -11,6 +12,7 @@ import lombok.*;
 @Getter
 @Setter
 //@NoArgsConstructor
+
 
 public class Absence implements AbsenceInterface {
         private int id;
@@ -24,8 +26,8 @@ public class Absence implements AbsenceInterface {
         }
 
         public Absence(int id, LocalDate date, String motif, String justification, List<Session> sessionsWithAbsence) {
-                id = id;
-                date = date;
+                this.id = ++lastId;
+                this.date = date;
                 if (motif != null){
                         this.motif = motif;
                 }
@@ -133,7 +135,18 @@ public class Absence implements AbsenceInterface {
         }
 
         @Override
-        public List<Session> GetByCriteriaSession(Object criteria) {
-                return null;
+        public List<Session> GetByCriteriaSession(SessionComponents criteria, Object criteriaContent) {
+
+                ArrayList<Session> sessionByCriteriaList = new ArrayList<Session>();
+                for (int i = 0; i < sessionsWithAbsence.size(); i++) {
+
+                        if (sessionsWithAbsence.get(i) == criteriaContent) {
+                                sessionByCriteriaList.add(sessionsWithAbsence.get(i));
+
+                        }
+
+
+                }
+                return sessionByCriteriaList;
         }
 }

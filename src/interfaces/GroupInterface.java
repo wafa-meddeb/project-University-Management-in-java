@@ -15,7 +15,7 @@ public interface GroupInterface {
     public void removeStudent(int index);
     public void updateStudent(int index, Group.StudentComponents featureToUpdate, Object newInfo);
     public Student getStudent(int index);
-    public List<Student> getStudentByCriteria(Object criteria);
+    public List<Student> getStudentByCriteria(Group.StudentComponents criteria, Object criteriaContent);
 
     //teachers' crud
     public void addTeacher(Teacher teacher);
@@ -23,7 +23,7 @@ public interface GroupInterface {
     public void updateTeacher(int index, Group.TeacherComponents featureToUpdate, Object newInfo);
     public Teacher getTeacher(int index);
     //getAllTeachers() n3mlou appel lel getter mta3 arraylist teachersByGroup
-    public List<Teacher> getTeacherByCriteria(Object criteria);
+    public List<Teacher> getTeacherByCriteria(Group.TeacherComponents criteria, Object criteriaContent);
 
     //modules' crud
     public void addModule(Module module);
@@ -31,7 +31,7 @@ public interface GroupInterface {
     public void updateModule(int index, Group.ModuleComponents featureToUpdate, Object newInfo);
     public Module getModule(int index);
     //getAllModules() n3mlou appel lel getter mta3 arraylist groupModules
-    public List<Module> getModuleByCriteria(Object criteria);
+    public List<Module> getModuleByCriteria(Group.ModuleComponents criteria, Object criteriaContent);
 
 
 }

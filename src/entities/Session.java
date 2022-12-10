@@ -2,6 +2,7 @@ package entities;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 import Enumeration.SessionState;
 import Enumeration.SessionType;
@@ -24,16 +25,16 @@ public class Session implements SessionInterface {
     private SessionType sessionType;
 
     private Module module;
-    private List<Absence> absenceBySession;
+    private ArrayList<Absence> absenceBySession;
     private static int lastId=0;
     public Session() {
         this.id=++lastId;
     }
 
-    public Session(int id, LocalTime startTime, LocalTime endTime, String classroomNumber, String goal,
+    public Session( LocalTime startTime, LocalTime endTime, String classroomNumber, String goal,
                    String summary, String tools, SessionState sessionState, SessionType sessionType, Module module,
-                   List<Absence> absenceBySession) {
-        this.id = id;
+                   ArrayList<Absence> absenceBySession) {
+        this.id=++lastId;
         this.startTime = startTime;
         this.endTime = endTime;
         this.goal = goal;
@@ -123,8 +124,16 @@ public class Session implements SessionInterface {
 
 
     @Override
-    public List<Absence> getAbsenceByCriteria(Object criteria) {
-        return null;
+    public List<Absence> getAbsenceByCriteria(AbsenceComponents criteria, Object criteriaContent) {
+        ArrayList<Absence> absenceByCriteriaList = new ArrayList<Absence>();
+        for (int i = 0; i < absenceBySession.size(); i++) {
+            if (absenceBySession.get(i) == criteriaContent) {
+                absenceByCriteriaList.add(absenceBySession.get(i));
+
+            }
+
+        }
+        return absenceByCriteriaList;
     }
 
 

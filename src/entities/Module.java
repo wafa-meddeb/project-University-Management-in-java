@@ -116,8 +116,16 @@ public class Module implements ModuleInterface {
 
 
     @Override
-    public List<Teacher> getTeacherByCriteria(Object criteria) {
-        return null;
+    public List<Teacher> getTeacherByCriteria(TeacherComponents criteria, Object criteriaContent) {
+        ArrayList<Teacher> teacherByCriteriaList = new ArrayList<Teacher>();
+        for (int i = 0; i < teachers.size(); i++) {
+            if (teachers.get(i) == criteriaContent) {
+                teacherByCriteriaList.add(teachers.get(i));
+
+            }
+
+        }
+        return teacherByCriteriaList;
     }
 
     @Override
@@ -211,8 +219,16 @@ public class Module implements ModuleInterface {
     //getAllSessions n3mlou appel lel getter mta3 arraylist mta3 sessions
 
     @Override
-    public List<Session> getSessionByCriteria(Object criteria) {
-        return null;
+    public List<Session> getSessionByCriteria(SessionComponents criteria, Object criteriaContent) {
+        ArrayList<Session> sessionByCriteriaList = new ArrayList<Session>();
+        for (int i = 0; i < sessions.size(); i++) {
+            if (teachers.get(i) == criteriaContent) {
+                sessionByCriteriaList.add(sessions.get(i));
+
+            }
+
+        }
+        return sessionByCriteriaList;
     }
 
     @Override
@@ -290,7 +306,15 @@ public class Module implements ModuleInterface {
 //    }
 
     @Override
-    public List<Group> getGroupByCriteria(Object criteria) {
-        return null;
+    public List<Group> getGroupByCriteria(Module.GroupComponents criteria, Object criteriaContent) {
+        ArrayList<Group> groupByCriteriaList = new ArrayList<Group>();
+        for (int i = 0; i < groups.size(); i++) {
+            if (groups.get(i) == criteriaContent) {
+                groupByCriteriaList.add(groups.get(i));
+
+            }
+
+        }
+        return groupByCriteriaList;
     }
 }

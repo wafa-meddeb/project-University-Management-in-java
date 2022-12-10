@@ -1,9 +1,7 @@
 package interfaces;
 
-import entities.Group;
+import entities.*;
 import entities.Module;
-import entities.Session;
-import entities.Teacher;
 
 import java.util.List;
 
@@ -14,7 +12,7 @@ public interface ModuleInterface {
     public void updateTeacher(int index, Module.TeacherComponents featureToUpdate, Object newInfo);
     public Teacher getTeacher(int index);
 
-    public List<Teacher> getTeacherByCriteria(Object criteria);
+    public List<Teacher> getTeacherByCriteria(Module.TeacherComponents criteria, Object criteriaContent);
 
     //sessions' crud
     public void addSession(Session session);
@@ -22,7 +20,7 @@ public interface ModuleInterface {
     public void updateSession(int index, Module.SessionComponents featureToUpdate, Object newInfo);
     public Session getSession(int index);
 //    public List<Session> getAllSessions();
-    public List<Session> getSessionByCriteria(Object criteria);
+    public List<Session> getSessionByCriteria(Module.SessionComponents criteria, Object criteriaContent);
 
 
     //Groups' crud
@@ -31,6 +29,6 @@ public interface ModuleInterface {
     public void updateGroup(int index, Module.GroupComponents featureToUpdate, Object newInfo);
     public Group getGroup(int index);
 //    public List<Group> getAllGroups();
-    public List<Group> getGroupByCriteria(Object criteria);
+    public List<Group> getGroupByCriteria(Module.GroupComponents criteria, Object criteriaContent);
 
 }

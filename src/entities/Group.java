@@ -20,7 +20,7 @@ public class Group implements GroupInterface {
     private String email;
     private String studyLevel;
 
-    private ArrayList<Module> groupModules = new ArrayList<Module>() ; ;
+    private ArrayList<Module> groupModules = new ArrayList<Module>() ;
     private ArrayList<Student> students = new ArrayList<Student>() ;
     private ArrayList<Teacher> teachersByGroup = new ArrayList<Teacher>() ;
     private static int lastId=0;
@@ -44,6 +44,7 @@ public class Group implements GroupInterface {
     @Override
     public void addStudent(Student std) {
         students.add(std);
+
 
     }
 
@@ -123,15 +124,28 @@ public class Group implements GroupInterface {
     }
 
     //getAllStd appel lel getter mta3 arraylist student
+    //System.out.println(students.get())
 
     @Override
-    public List<Student> getStudentByCriteria(Object criteria) {
-        return null;
+    public List<Student> getStudentByCriteria(StudentComponents criteria,Object criteriaContent) {
+
+        ArrayList<Student> StudentByCriteriaList = new ArrayList<Student>();
+        for (int i = 0; i < students.size(); i++) {
+
+            if (teachersByGroup.get(i) == criteriaContent) {
+                StudentByCriteriaList.add(students.get(i));
+
+            }
+
+
+        }
+        return StudentByCriteriaList;
     }
 
     @Override
     public void addTeacher(Teacher teacher) {
         teachersByGroup.add(teacher);
+
 
     }
 
@@ -208,8 +222,16 @@ public class Group implements GroupInterface {
     //getAllTeachers() n3mlou appel lel getter mta3 arraylist teachersByGroup
 
     @Override
-    public List<Teacher> getTeacherByCriteria(Object criteria) {
-        return null;
+    public List<Teacher> getTeacherByCriteria(TeacherComponents criteria,Object criteriaContent) {
+        ArrayList<Teacher> teacherByCriteriaList = new ArrayList<Teacher>();
+        for (int i = 0; i < teachersByGroup.size(); i++) {
+            if (teachersByGroup.get(i) == criteriaContent) {
+                teacherByCriteriaList.add(teachersByGroup.get(i));
+
+            }
+
+        }
+        return teacherByCriteriaList;
     }
 
     @Override
@@ -279,7 +301,17 @@ public class Group implements GroupInterface {
 
 
     @Override
-    public List<Module> getModuleByCriteria(Object criteria) {
-        return null;
+    public List<Module> getModuleByCriteria(ModuleComponents criteria,Object criteriaContent) {
+        ArrayList<Module> moduleByCriteriaList = new ArrayList<Module>();
+        for (int i = 0; i < groupModules.size(); i++) {
+
+            if (groupModules.get(i) == criteriaContent) {
+                moduleByCriteriaList.add(groupModules.get(i));
+
+            }
+
+
+        }
+        return moduleByCriteriaList;
     }
 }

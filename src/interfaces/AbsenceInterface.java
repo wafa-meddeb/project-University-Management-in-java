@@ -13,5 +13,5 @@ public interface AbsenceInterface {
     public void UpdateSession(int index, Absence.SessionComponents featureToUpdate, Object newInfo);
     public Session GetSession(int index);
     //public List<Session> GetAllSession();
-    public List<Session> GetByCriteriaSession(Object criteria);
+    public List<Session> GetByCriteriaSession(Absence.SessionComponents criteria, Object criteriaContent);
 }

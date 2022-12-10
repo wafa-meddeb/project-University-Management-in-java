@@ -14,5 +14,5 @@ public interface SessionInterface {
     public void updateAbsence(int index, Session.AbsenceComponents featureToUpdate, Object newInfo);
     public Absence getAbsence(int index);
 //    public List<Absence> getAllAbsences();
-    public List<Absence> getAbsenceByCriteria(Object criteria);
+    public List<Absence> getAbsenceByCriteria(Session.AbsenceComponents criteria, Object criteriaContent);
 }
