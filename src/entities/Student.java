@@ -5,7 +5,7 @@ import Enumeration.StudentState;
 import interfaces.StudentInterface;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,27 +16,35 @@ import java.util.List;
 
 public class Student extends Person implements StudentInterface {
 
+    private int id;
     private StudentState studentState;
     private StudentSituation studentSituation;
-    private List<Absence> studentAbsence;
+    private ArrayList<Absence> studentAbsence = new ArrayList<>();
     private LocalDate birthday;
 
     private Group group;
+    private static int lastId = 0;
+    public Student() {
+        this.id=++lastId;
+    }
 
 
 
-    public Student(int Id, String Name, String FamilyName, byte[] Photo, StudentState studentState, StudentSituation studentSituation, List<Absence> studentAbsence, LocalDate birthday) {
-        super(Id, Name, FamilyName, Photo);
+    public Student( String Name, String FamilyName, String Photo, StudentState studentState, StudentSituation studentSituation, ArrayList<Absence> studentAbsence, LocalDate birthday,Group group) {
+
+        super(Name, FamilyName, Photo);
+        this.id = ++lastId;
         this.studentState = studentState;
         this.studentSituation = studentSituation;
         this.studentAbsence = studentAbsence;
         this.birthday = birthday;
+        this.group = group;
     }
-    public Student(){}
+
 
     @Override
     public String toString() {
-        return super.toString()+"\nStudent Absence : "+getStudentAbsence()+"\nStudent State : "+getStudentState()+"\nBirthday : "+getBirthday()+
+        return "\n id: "+id+super.toString()+"\nStudent Absence : "+getStudentAbsence()+"\nStudent State : "+getStudentState()+"\nBirthday : "+getBirthday()+
                 "\nStudent Situation"+ getStudentSituation();
     }
 
@@ -112,4 +120,6 @@ public class Student extends Person implements StudentInterface {
         }
         return absenceByCriteriaList;
     }
+
+
 }

@@ -13,11 +13,11 @@ import java.util.List;
 @Getter
 @Setter
 //@NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 
 public class Module implements ModuleInterface {
     private int id;
-    private static String name;
+    private /*static*/ String name;
     private float due;
     private String studyLevel;
     private ModuleType moduleType;
@@ -29,9 +29,21 @@ public class Module implements ModuleInterface {
     public Module() {
         this.id=++lastId;
     }
+
+    public Module(String name, float due, String studyLevel, ModuleType moduleType, ArrayList<Session> sessions, ArrayList<Teacher> teachers, ArrayList<Group> groups) {
+        this.id=++lastId;
+        this.name = name;
+        this.due = due;
+        this.studyLevel = studyLevel;
+        this.moduleType = moduleType;
+        this.sessions = sessions;
+        this.teachers = teachers;
+        this.groups = groups;
+    }
+
     @Override
     public String toString() {
-        return "Id : "+id+"\nName : "+Module.name+"\nDue : "+getDue()+"\nStudy Level : "+getStudyLevel()
+        return "Id : "+id+"\nName : "+getName()+"\nDue : "+getDue()+"\nStudy Level : "+getStudyLevel()
                 +"\nmodule type : "+getModuleType()+"\nSession : "+getSessions()+"\nteachers : "+getTeachers()+
                 "\nGroup"+getGroups();
     }
@@ -80,7 +92,7 @@ public class Module implements ModuleInterface {
                         teachers.get(index).setFamilyName(((String) newInfo));
                         break;
                     case photo:
-                        teachers.get(index).setPhoto(((byte[]) newInfo));
+                        teachers.get(index).setPhoto(((String) newInfo));
                         break;
                     case due:
                         teachers.get(index).setDue(((float) newInfo));

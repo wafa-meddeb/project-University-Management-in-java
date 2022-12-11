@@ -11,22 +11,26 @@ import javax.swing.*;
 
 @Getter
 @Setter
-//@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor
+
 
 public class Person {
-    private int id;
+
     private String name;
     private String familyName;
-    private byte[] photo;
-    private static int lastId=0;
-    public Person() {
-        this.id=++lastId;
+    private String photo;
+
+
+
+    public Person(String name, String familyName, String photo) {
+        this.name = name;
+        this.familyName = familyName;
+        this.photo = photo;
     }
 
     @Override
     public String toString() {
-        return "Id : "+id+"\nName : "+getName()+"\nFamily Name : "+getFamilyName()+"\nPhoto : "+getPhoto() ;
+        return "\nName : "+getName()+"\nFamily Name : "+getFamilyName()+"\nPhoto : "+getPhoto() ;
     }
 }
 

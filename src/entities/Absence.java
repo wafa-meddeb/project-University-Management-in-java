@@ -19,13 +19,13 @@ public class Absence implements AbsenceInterface {
         private LocalDate date;
         private String motif ; //not required option
         private String justification ; //not required
-        private List<Session> sessionsWithAbsence;
+        private ArrayList<Session> sessionsWithAbsence = new ArrayList<>();
         private static int lastId=0;
         public Absence() {
                 this.id=++lastId;
         }
 
-        public Absence(int id, LocalDate date, String motif, String justification, List<Session> sessionsWithAbsence) {
+        public Absence( LocalDate date, String motif, String justification, ArrayList<Session> sessionsWithAbsence) {
                 this.id = ++lastId;
                 this.date = date;
                 if (motif != null){
@@ -40,12 +40,12 @@ public class Absence implements AbsenceInterface {
                 else{
                         this.justification = null ;
                 }
-                sessionsWithAbsence = sessionsWithAbsence;
+                this.sessionsWithAbsence = sessionsWithAbsence;
         }
         @Override
         public String toString() {
                 return "Id : "+id+"\nLocal Date : "+getDate()+"\nMotif : "+getMotif()+"\nJustification : "+getJustification()
-                        +"\nSession with absence : "+getSessionsWithAbsence();
+                        +"\nSession with absence : "+getSessionsWithAbsence()+"\n";
         }
 
         @Override

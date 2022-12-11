@@ -25,7 +25,7 @@ public class Session implements SessionInterface {
     private SessionType sessionType;
 
     private Module module;
-    private ArrayList<Absence> absenceBySession;
+    private ArrayList<Absence> absenceBySession=new ArrayList<>();
     private static int lastId=0;
     public Session() {
         this.id=++lastId;
@@ -62,6 +62,8 @@ public class Session implements SessionInterface {
                 +"\nSummary : "+getSummary()+"\nTools : "+getTools()+"\nSession State : "+getSessionState()+"\nSession Type : "+getSessionType()
                 +"\nAbsence by session : "+getAbsenceBySession();
     }
+
+
 
     @Override
     public void addAbsence(Absence absence) {

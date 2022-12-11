@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 //@NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Group implements GroupInterface {
     private int id;
     private String name;
@@ -27,6 +27,18 @@ public class Group implements GroupInterface {
     public Group() {
         this.id=++lastId;
     }
+
+    public Group(String name, int studentsNumber, String email, String studyLevel, ArrayList<Module> groupModules, ArrayList<Student> students, ArrayList<Teacher> teachersByGroup) {
+        this.id=++lastId;
+        this.name = name;
+        this.studentsNumber = studentsNumber;
+        this.email = email;
+        this.studyLevel = studyLevel;
+        this.groupModules = groupModules;
+        this.students = students;
+        this.teachersByGroup = teachersByGroup;
+    }
+
     @Override
     public String toString() {
         return "Id : "+id+"\nName : "+getName()+"\nStudent Number : "+getStudentsNumber()+"\nEmail : "+getEmail()
@@ -88,7 +100,7 @@ public class Group implements GroupInterface {
                         students.get(index).setFamilyName(((String) newInfo));
                         break;
                     case photo:
-                        students.get(index).setPhoto(((byte[]) newInfo));
+                        students.get(index).setPhoto(((String) newInfo));
                         break;
                     case birthday:
                         students.get(index).setBirthday(((LocalDate) newInfo));
@@ -100,7 +112,7 @@ public class Group implements GroupInterface {
                         students.get(index).setStudentSituation(((StudentSituation) newInfo));
                         break;
                     case studentAbsence:
-                        students.get(index).setStudentAbsence((List<Absence>) newInfo);
+                        students.get(index).setStudentAbsence((ArrayList<Absence>) newInfo);
                         break;
                     default:
                         students.get(index).setGroup((Group) newInfo);
@@ -188,7 +200,7 @@ public class Group implements GroupInterface {
                         teachersByGroup.get(index).setFamilyName(((String) newInfo));
                         break;
                     case photo:
-                        teachersByGroup.get(index).setPhoto(((byte[]) newInfo));
+                        teachersByGroup.get(index).setPhoto(((String) newInfo));
                         break;
                     case due:
                         teachersByGroup.get(index).setDue(((float) newInfo));
@@ -314,4 +326,6 @@ public class Group implements GroupInterface {
         }
         return moduleByCriteriaList;
     }
+
+
 }

@@ -9,17 +9,18 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
+//@NoArgsConstructor
 @ToString
 
 public class Teacher extends Person implements TeacherInterface {
 
+    private int id;
     private String personalEmail;
     private String workEmail;
     private float Due;
 
-    private ArrayList<Module> teacherModules ;
-    private ArrayList<Group> groupsByTeacher ;
+    private ArrayList<Module> teacherModules = new ArrayList<>() ;
+    private ArrayList<Group> groupsByTeacher = new ArrayList<>() ;
 
     public String getPersonalEmail() {
         return personalEmail;
@@ -44,12 +45,15 @@ public class Teacher extends Person implements TeacherInterface {
     public void setDue(float due) {
         this.Due = due;
     }
+    private static int lastId = 0;
+    public Teacher() {
+        this.id=++lastId;
+    }
 
 
-
-
-    public Teacher(int Id, String Name, String FamilyName, byte[] Photo, String personalEmail, String workEmail, float due) {
-        super(Id, Name, FamilyName,Photo);
+    public Teacher( String Name, String FamilyName, String Photo, String personalEmail, String workEmail, float due) {
+        super( Name, FamilyName,Photo);
+        this.id=++lastId;
         this.personalEmail = personalEmail;
         this.workEmail = workEmail;
         this.Due = due;
@@ -57,7 +61,7 @@ public class Teacher extends Person implements TeacherInterface {
 
     @Override
     public String toString() {
-        return super.toString()+"\npersonal email : "+getPersonalEmail()+"\nwork email : "+getWorkEmail()+"\nDue : "+getDue();
+        return "\n id: "+id+super.toString()+"\npersonal email : "+getPersonalEmail()+"\nwork email : "+getWorkEmail()+"\nDue : "+getDue();
     }
 
     @Override
