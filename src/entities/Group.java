@@ -41,9 +41,9 @@ public class Group implements GroupInterface {
 
     @Override
     public String toString() {
-        return "Id : "+id+"\nName : "+getName()+"\nStudent Number : "+getStudentsNumber()+"\nEmail : "+getEmail()
-                +"\nStudent Level : "+getStudyLevel()+"\nList of Group Modules : "+getGroupModules()+"\nList of Students : "+getStudents()+
-                "\nList of Teachers"+getTeachersByGroup();
+        return "Id : "+id+"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
+                +"\nStudent Level : "+studyLevel+"\nList of Group Modules : "+groupModules+"\nList of Students : "+ students+
+                "\nList of Teachers"+teachersByGroup;
     }
 
 

@@ -1,63 +1,24 @@
 
 import entities.*;
 import entities.Module;
-import interfaces.*;
 import Enumeration.*;
+import projectMenu.ManageModulesMenu;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
+
+import static projectMenu.AdminActionMenu.adminActionMenu;
+import static projectMenu.ManageGroupMenu.ManageGroupMenu;
+import static projectMenu.ManageTeachersMenu.ManageTeachersMenu;
+import static projectMenu.MenuPrincipal.mainMenu;
+import static projectMenu.TeacherActionsMenu.teacherActionsMenu;
+import static projectMenu.ManageStudentsMenu.ManageStudentsMenu;
+import static projectMenu.ManageSessionsMenu.ManageSessionsMenu;
+import static projectMenu.ManageModulesMenu.ManageModulesMenu;
 
 public class Main {
-        public static int mainMenu()
-        {
-            System.out.println("please choose one of the choices provided to identify yourself");
-            System.out.println("1. admin");
-            System.out.println("2. teacher");
-            System.out.println("3. exit the application");
-            int mainChoice;
-            Scanner sc=new Scanner(System.in);
-            do{
-                System.out.println("Votre Choix :");
-                mainChoice =sc.nextInt();
 
-            }while(mainChoice <1|| mainChoice >3);
-            return mainChoice;
-        }
-    public static int adminActionMenu() {
-        System.out.println("please choose one of the choices provided to define your action");
-        System.out.println("1. manage students");
-        System.out.println("2. manage teachers");
-        System.out.println("3. manage groups");
-        System.out.println("4. manage sessions");
-        System.out.println("5. manage modules");
-        System.out.println("6. exit the application");
-        int secondChoice;
-        Scanner sc = new Scanner(System.in);
-        do {
-            System.out.println("Votre Choix :");
-            secondChoice = sc.nextInt();
-
-        } while (secondChoice < 1 || secondChoice > 6);
-        return secondChoice;
-    }
-    public static int teacherActionsMenu(){
-        System.out.println("please choose one of the choices provided to define your action");
-        System.out.println("1. statistics about absenteeism by group");
-        System.out.println("2. statistics about absenteeism by student");
-        System.out.println("3. exit the application");
-        int teacherChoice;
-        Scanner sc = new Scanner(System.in);
-        do {
-            System.out.println("Votre Choix :");
-            teacherChoice = sc.nextInt();
-
-        } while (teacherChoice < 1 || teacherChoice > 3);
-
-        return teacherChoice;
-
-    }
         public static void main(String[] args) {
 
             ArrayList < Module> modulesList= new ArrayList < Module>();
@@ -83,12 +44,12 @@ public class Main {
             modulesList.add(module1);
             System.out.println("******************* Modules ******************************");
             System.out.println(modulesList);
-//            System.out.println("-------- Modules group 1 --------");
-//            group1.getGroupModules().add(module1);
-//            System.out.println(group1.getGroupModules());
-//            System.out.println("-------- Modules group 2 --------");
-//            group2.getGroupModules().add(module1);
-//            System.out.println(group2.getGroupModules());
+            System.out.println("-------- Modules group 1 --------");
+            group1.getGroupModules().add(module1);
+            System.out.println(group1.getGroupModules());
+            System.out.println("-------- Modules group 2 --------");
+            group2.getGroupModules().add(module1);
+            System.out.println(group2.getGroupModules());
 
 
             Session session = new Session();
@@ -189,32 +150,187 @@ public class Main {
                             switch (adminActionChoice) {
                                 case 1:
                                     //manage students
-                                    //add
+                                    int stdMngChoice;
+                                    do{
+                                        stdMngChoice = ManageStudentsMenu();
+                                        switch(stdMngChoice){
+                                            case 1:
+                                                //add a student
+                                                break;
+                                            case 2:
+                                                //update an existing student
+                                                break;
+                                            case 3:
+                                                //remove a student
+                                                break;
+                                            case 4:
+                                                //find student details
+                                                break;
+                                            case 5:
+                                                //find a student by criteria
+                                                break;
+                                            case 6:
+                                                //displayAllStudents
+                                                break;
+                                            case 7:
+                                                //return to menu ManageStudentsMenu
+                                                break;
+                                            case 8:
+                                                //return to AdminActionMenu
+                                            default:
+                                                System.exit(0);
 
-                                    //Group grp1 = new Group();
-                                    //Student std1 = new Student(1235,"saief","meddeb","010",StudentState.Present,StudentSituation.New,null, LocalDate.now());
-                                    //grp1.addStudent(std1);
+                                        }
+                                    }while(stdMngChoice !=9);
+
 
 
                                     break;
                                 case 2:
                                     //manage teachers
+                                    int teacherMngChoice;
+                                    do{
+                                        teacherMngChoice = ManageTeachersMenu();
+                                        switch(teacherMngChoice){
+                                            case 1:
+                                                //add a teacher
+                                                break;
+                                            case 2:
+                                                //update an existing teacher
+                                                break;
+                                            case 3:
+                                                //remove a teacher
+                                                break;
+                                            case 4:
+                                                //find teacher details
+                                                break;
+                                            case 5:
+                                                //find a teacher by criteria
+                                                break;
+                                            case 6:
+                                                //displayAllTeachers
+                                                break;
+                                            case 7:
+                                                //return to menu ManageTeachersMenu
+                                                break;
+                                            case 8:
+                                                //return to AdminActionMenu
+                                            default:
+                                                System.exit(0);
+
+                                        }
+                                    }while(teacherMngChoice !=9);
                                     break;
                                 case 3:
                                     //manage groups
+                                    int grpMngChoice;
+                                    do{
+                                        grpMngChoice = ManageGroupMenu();
+                                        switch(grpMngChoice){
+                                            case 1:
+                                                //add a grp
+                                                break;
+                                            case 2:
+                                                //update an existing grp
+                                                break;
+                                            case 3:
+                                                //remove a grp
+                                                break;
+                                            case 4:
+                                                //find grp details
+                                                break;
+                                            case 5:
+                                                //find a grp by criteria
+                                                break;
+                                            case 6:
+                                                //displayAllGroups
+                                                break;
+                                            case 7:
+                                                //return to menu ManageGroupMenu
+                                                break;
+                                            case 8:
+                                                //return to AdminActionMenu
+                                            default:
+                                                System.exit(0);
+
+                                        }
+                                    }while(grpMngChoice !=9);
                                     break;
                                 case 4:
                                     //manage sessions
+                                    int sessionsMngChoice;
+                                    do{
+                                        sessionsMngChoice = ManageSessionsMenu();
+                                        switch(sessionsMngChoice){
+                                            case 1:
+                                                //add a session
+                                                break;
+                                            case 2:
+                                                //update an existing session
+                                                break;
+                                            case 3:
+                                                //remove a session
+                                                break;
+                                            case 4:
+                                                //find session details
+                                                break;
+                                            case 5:
+                                                //find a session by criteria
+                                                break;
+                                            case 6:
+                                                //displayAllSessions
+                                                break;
+                                            case 7:
+                                                //return to menu ManageSessionsMenu
+                                                break;
+                                            case 8:
+                                                //return to AdminActionMenu
+                                            default:
+                                                System.exit(0);
+
+                                        }
+                                    }while(sessionsMngChoice !=9);
                                     break;
+
                                 case 5:
                                     //manage modules
+                                    int modulesMngChoice;
+                                    do{
+                                        modulesMngChoice = ManageModulesMenu();
+                                        switch(modulesMngChoice){
+                                            case 1:
+                                                //add a module
+                                                break;
+                                            case 2:
+                                                //update an existing module
+                                                break;
+                                            case 3:
+                                                //remove a module
+                                                break;
+                                            case 4:
+                                                //find module details
+                                                break;
+                                            case 5:
+                                                //find a module by criteria
+                                                break;
+                                            case 6:
+                                                //displayAllModules
+                                                break;
+                                            case 7:
+                                                //return to menu ManageModulesMenu
+                                                break;
+                                            case 8:
+                                                //return to AdminActionMenu
+                                            default:
+                                                System.exit(0);
+
+                                        }
+                                    }while(modulesMngChoice !=9);
                                     break;
                                 default:
                                     System.exit(0);
                             }
                         }while(adminActionChoice !=6);
-
-
                         break;
                     case 2:
                         //teacher actions : perform some statistics
@@ -222,35 +338,28 @@ public class Main {
                         do {
                             switch (teacherActionChoice) {
                                 case 1:
-                                    //absenteeism by group
+                                    //absenteeism by one group
+                                    int studentsAbsenteeisme =0;
+
+                                    for(int i = 0;i<group1.getStudents().size();i++){
+                                        studentsAbsenteeisme += group1.getStudents().get(i).getStudentAbsence().size();
+
+
+                                    }
+                                    System.out.println("moy d'absence par grp= "+ studentsAbsenteeisme/group1.getStudentsNumber());
                                     break;
                                 case 2:
-
-
-                                   Scanner sc = new Scanner(System.in);
-                                    System.out.println("please enter the student id ");
-                                    int studentId = sc.nextInt();
-                                    int i =0;
-                                    boolean test=false;
-                                    double studentAbsenteeisme=0;
-                                    do{
-                                        if (studentId == studentsList.get(i).getId()){
-                                            test = true;
-                                            std1 = studentsList.get(i);
-//                                            studentAbsenteeisme = ()*100;
-
+                                    //absenteeism by  groups
+                                    int absenteeismByGrps =0;
+                                    int grpListAbsenteeism =0;
+                                    for(int i=0;i<groupsList.size();i++){
+                                        for(int j=0;i<groupsList.get(j).getStudents().size();j++){
+                                            grpListAbsenteeism += groupsList.get(j).getStudents().get(j).getStudentAbsence().size();
                                         }
-                                        else{
-                                            i++;
-                                        }
-                                    }while((i<studentsList.size())&&(test==false));
-                                    if (test == true){
-                                        System.out.println("the absenteeism rate of the student is equal to : "+studentAbsenteeisme);
-
-                                }
-                                    else{
-                                        System.out.println("the student does not exist");
                                     }
+                                    int totalStdNbre = group1.getStudentsNumber()+group2.getStudentsNumber();
+                                    System.out.println("moy d'absence par grp= "+ grpListAbsenteeism/totalStdNbre);
+
 
                                     break;
 
@@ -267,6 +376,9 @@ public class Main {
                         System.exit(0);
                 }
             }while(firstChoice !=3);
+
+        }
+        public void stdStatic (){
 
         }
     }

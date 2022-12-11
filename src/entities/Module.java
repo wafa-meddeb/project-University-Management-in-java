@@ -43,9 +43,9 @@ public class Module implements ModuleInterface {
 
     @Override
     public String toString() {
-        return "Id : "+id+"\nName : "+getName()+"\nDue : "+getDue()+"\nStudy Level : "+getStudyLevel()
-                +"\nmodule type : "+getModuleType()+"\nSession : "+getSessions()+"\nteachers : "+getTeachers()+
-                "\nGroup"+getGroups();
+        return "Id : "+id+"\nName : "+name+"\nDue : "+due+"\nStudy Level : "+studyLevel
+                +"\nmodule type : "+moduleType+"\nSession : "+sessions+"\nteachers : "+teachers+
+                "\nGroup"+groups;
     }
 
     @Override
