@@ -2,11 +2,11 @@
 import entities.*;
 import entities.Module;
 import Enumeration.*;
-import projectMenu.ManageModulesMenu;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static projectMenu.AdminActionMenu.adminActionMenu;
 import static projectMenu.ManageGroupMenu.ManageGroupMenu;
@@ -21,7 +21,7 @@ public class Main {
 
         public static void main(String[] args) {
 
-            ArrayList < Module> modulesList= new ArrayList < Module>();
+            ArrayList < Module> modulesList= new ArrayList <>();
             ArrayList<Session> sessionsList =new ArrayList<>();
             ArrayList<Teacher> teachersList =new ArrayList<>();
             ArrayList<Student> studentsList =new ArrayList<>();
@@ -38,6 +38,7 @@ public class Main {
             Group group2=new Group("grp2",18,"2021-2022-2Lmad2@esprit.tn","2lmad",moduleslist,studentsList,teachersList);
             groupsList.add(group1);
             groupsList.add(group2);
+            System.out.println(groupsList);
 
 
             Module module1 = new Module("algebre",36.5f,"2lmad",ModuleType.Required,sessionsList,teachersList,groupsListModule1);
@@ -50,6 +51,8 @@ public class Main {
             System.out.println("-------- Modules group 2 --------");
             group2.getGroupModules().add(module1);
             System.out.println(group2.getGroupModules());
+
+
 
 
             Session session = new Session();
@@ -69,10 +72,6 @@ public class Main {
             module1.getGroups().add(group2);
             System.out.println("-------- Module 1 groups ------------");
             System.out.println(module1.getGroups());
-
-
-
-
             Student student = new Student();
             Student std1 = new Student("ines","said","ImagePath",StudentState.Present,StudentSituation.New,student.getStudentAbsence(), LocalDate.of(2000,05,19),group1);
             Student std2 = new Student("saief","meddeb","ImagePath",StudentState.Present,StudentSituation.New,student.getStudentAbsence(), LocalDate.of(1994,05,12),group2);
@@ -129,15 +128,12 @@ public class Main {
             System.out.println("------ session 1 with absence -------");
 
             std1.getStudentAbsence().add(absence1);
-//            public double absenteeismByStudent(){
-//                double studentAbsenteeisme = (studentAbsence.size()/groupsList.get().getStudentsNumber())*100;
-//                return studentAbsenteeisme;
-//            }
 
 
-
+            //menu
             int firstChoice;
-
+            Person p;
+            Scanner sc = new Scanner(System.in);
             do {
                 firstChoice =mainMenu();
 
@@ -156,9 +152,36 @@ public class Main {
                                         switch(stdMngChoice){
                                             case 1:
                                                 //add a student
+                                                p = new Student();
+                                                System.out.println("first Name: ");
+                                                ((Student)p).setName(sc.nextLine());
+                                                System.out.println("last Name: ");
+                                                ((Student)p).setName(sc.nextLine());
+                                                System.out.println("photo url: ");
+                                                ((Student)p).setPhoto(sc.nextLine());
+                                                do {
+                                                    System.out.println("student state: present / absent / delayed / excluded ");
+                                                    ((Student)p).setStudentState(StudentState.valueOf(sc.nextLine()));
+                                                }while (((sc.nextLine()) != "present") || ((sc.nextLine()) != "absent") || ((sc.nextLine()) != "delayed") || ((sc.nextLine()) != "excluded"));
+                                                do{
+                                                    System.out.println("student situatione: new / repeating / derogatory / other ");
+                                                    ((Student)p).setStudentSituation(StudentSituation.valueOf(sc.nextLine()));
+                                                }while(((sc.nextLine()) != "new") || ((sc.nextLine()) != "repeating") || ((sc.nextLine()) != "derogatory") || ((sc.nextLine()) != "other"));
+                                                System.out.println("birthday: ");
+                                                ((Student)p).setBirthday(LocalDate.parse(sc.nextLine()));
+//                                                System.out.println("absence list: ");
+//                                                ((Student)p).setStudentAbsence(sc.next());
+//                                                System.out.println("group name: ");
+//                                                ((Student)p).setName();
+
+
                                                 break;
                                             case 2:
                                                 //update an existing student
+                                                System.out.println("student id: ");
+                                                int stdId = sc.nextInt();
+                                                System.out.println("what is the feature which you seek to update?");
+                                                String stdFeature = sc.next();
                                                 break;
                                             case 3:
                                                 //remove a student
@@ -211,15 +234,21 @@ public class Main {
                                                 //displayAllTeachers
                                                 break;
                                             case 7:
-                                                //return to menu ManageTeachersMenu
+                                                //affect to module to a teacher
                                                 break;
                                             case 8:
+                                                //affect to grp to a teacher
+                                                break;
+                                            case 9:
+                                                //return to menu ManageTeachersMenu
+                                                break;
+                                            case 10:
                                                 //return to AdminActionMenu
                                             default:
                                                 System.exit(0);
 
                                         }
-                                    }while(teacherMngChoice !=9);
+                                    }while(teacherMngChoice !=11);
                                     break;
                                 case 3:
                                     //manage groups
@@ -246,15 +275,21 @@ public class Main {
                                                 //displayAllGroups
                                                 break;
                                             case 7:
-                                                //return to menu ManageGroupMenu
+                                                //Affect a module to a group
                                                 break;
                                             case 8:
+                                                //Affect a teacher to a group
+                                                break;
+                                            case 9:
+                                                //return to menu ManageGroupMenu
+                                                break;
+                                            case 10:
                                                 //return to AdminActionMenu
                                             default:
                                                 System.exit(0);
 
                                         }
-                                    }while(grpMngChoice !=9);
+                                    }while(grpMngChoice !=11);
                                     break;
                                 case 4:
                                     //manage sessions
@@ -317,15 +352,21 @@ public class Main {
                                                 //displayAllModules
                                                 break;
                                             case 7:
-                                                //return to menu ManageModulesMenu
+                                                //affect a group to a module
                                                 break;
                                             case 8:
+                                                //affect a teacher to a module
+                                                break;
+                                            case 9:
+                                                //return to menu ManageModulesMenu
+                                                break;
+                                            case 10:
                                                 //return to AdminActionMenu
                                             default:
                                                 System.exit(0);
 
                                         }
-                                    }while(modulesMngChoice !=9);
+                                    }while(modulesMngChoice !=11);
                                     break;
                                 default:
                                     System.exit(0);
@@ -339,26 +380,26 @@ public class Main {
                             switch (teacherActionChoice) {
                                 case 1:
                                     //absenteeism by one group
-                                    int studentsAbsenteeisme =0;
-
-                                    for(int i = 0;i<group1.getStudents().size();i++){
-                                        studentsAbsenteeisme += group1.getStudents().get(i).getStudentAbsence().size();
-
-
-                                    }
-                                    System.out.println("moy d'absence par grp= "+ studentsAbsenteeisme/group1.getStudentsNumber());
+//                                    int studentsAbsenteeisme =0;
+//
+//                                    for(int i = 0;i<group1.getStudents().size();i++){
+//                                        studentsAbsenteeisme += group1.getStudents().get(i).getStudentAbsence().size();
+//
+//
+//                                    }
+//                                    System.out.println("moy d'absence par grp= "+ studentsAbsenteeisme/group1.getStudentsNumber());
                                     break;
                                 case 2:
                                     //absenteeism by  groups
-                                    int absenteeismByGrps =0;
-                                    int grpListAbsenteeism =0;
-                                    for(int i=0;i<groupsList.size();i++){
-                                        for(int j=0;i<groupsList.get(j).getStudents().size();j++){
-                                            grpListAbsenteeism += groupsList.get(j).getStudents().get(j).getStudentAbsence().size();
-                                        }
-                                    }
-                                    int totalStdNbre = group1.getStudentsNumber()+group2.getStudentsNumber();
-                                    System.out.println("moy d'absence par grp= "+ grpListAbsenteeism/totalStdNbre);
+//                                    int absenteeismByGrps =0;
+//                                    int grpListAbsenteeism =0;
+//                                    for(int i=0;i<groupsList.size();i++){
+//                                        for(int j=0;i<groupsList.get(j).getStudents().size();j++){
+//                                            grpListAbsenteeism += groupsList.get(j).getStudents().get(j).getStudentAbsence().size();
+//                                        }
+//                                    }
+//                                    int totalStdNbre = group1.getStudentsNumber()+group2.getStudentsNumber();
+//                                    System.out.println("moy d'absence par grp= "+ grpListAbsenteeism/totalStdNbre);
 
 
                                     break;

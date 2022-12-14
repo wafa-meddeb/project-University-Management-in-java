@@ -34,6 +34,10 @@ public class Teacher extends Person implements TeacherInterface {
         return workEmail;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setWorkEmail(String workEmail) {
         this.workEmail = workEmail;
     }

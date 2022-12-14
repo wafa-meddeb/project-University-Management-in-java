@@ -11,16 +11,18 @@ public class ManageModulesMenu {
         System.out.println("4. find module details");
         System.out.println("5. find a module by a specific criteria");
         System.out.println("6. display all module");
-        System.out.println("7. return to menu to choose another action");
-        System.out.println("8. return to menu to manage another entity");
-        System.out.println("9. exit the application");
+        System.out.println("7. affect a group to a module");
+        System.out.println("8. affect a teacher to a module");
+        System.out.println("9. return to menu to choose another action");
+        System.out.println("10. return to menu to manage another entity");
+        System.out.println("11. exit the application");
         int moduleActionChoice;
         Scanner sc = new Scanner(System.in);
         do {
             System.out.println("Votre Choix :");
             moduleActionChoice = sc.nextInt();
 
-        } while (moduleActionChoice < 1 || moduleActionChoice > 9);
+        } while (moduleActionChoice < 1 || moduleActionChoice > 11);
         return moduleActionChoice;
     }
 }

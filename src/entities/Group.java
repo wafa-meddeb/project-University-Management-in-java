@@ -11,6 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
+
 //@NoArgsConstructor
 //@AllArgsConstructor
 public class Group implements GroupInterface {
@@ -39,11 +40,13 @@ public class Group implements GroupInterface {
         this.teachersByGroup = teachersByGroup;
     }
 
+
+
     @Override
     public String toString() {
-        return "Id : "+id+"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
+        return "Id : "+id/*+"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
                 +"\nStudent Level : "+studyLevel+"\nList of Group Modules : "+groupModules+"\nList of Students : "+ students+
-                "\nList of Teachers"+teachersByGroup;
+                "\nList of Teachers"+teachersByGroup*/;
     }
 
 

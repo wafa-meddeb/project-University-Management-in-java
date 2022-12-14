@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -22,9 +23,9 @@ public class Module implements ModuleInterface {
     private String studyLevel;
     private ModuleType moduleType;
 
-    private ArrayList<Session> sessions = new ArrayList<Session>() ;
-    private ArrayList<Teacher> teachers = new ArrayList<Teacher>() ;
-    private ArrayList<Group> groups =new ArrayList<Group>();
+    private ArrayList<Session> sessions = new ArrayList<>();
+    private ArrayList<Teacher> teachers = new ArrayList<>();
+    private ArrayList<Group> groups =new ArrayList<>();
     private static int lastId=0;
     public Module() {
         this.id=++lastId;
@@ -43,9 +44,12 @@ public class Module implements ModuleInterface {
 
     @Override
     public String toString() {
-        return "Id : "+id+"\nName : "+name+"\nDue : "+due+"\nStudy Level : "+studyLevel
-                +"\nmodule type : "+moduleType+"\nSession : "+sessions+"\nteachers : "+teachers+
-                "\nGroup"+groups;
+        System.out.println("groups: "+groups);
+
+        return  "Id : "+ id +"\nName : "+ name +"\nDue : "+due +"\nStudy Level : "+ studyLevel
+                +"\nmodule type : "+ moduleType +"\nSession : " + sessions + "\nteachers : " + teachers+
+                "\nGroup"+ Arrays.toString(groups.toArray());
+
     }
 
     @Override
