@@ -5,8 +5,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import Enumeration.SessionState;
-import Enumeration.SessionType;
+import enumeration.SessionState;
+import enumeration.SessionType;
 import interfaces.AbsenceInterface;
 import lombok.*;
 @Getter

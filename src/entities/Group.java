@@ -1,9 +1,10 @@
 package entities;
-import Enumeration.ModuleType;
-import Enumeration.StudentSituation;
-import Enumeration.StudentState;
+import enumeration.ModuleType;
+import enumeration.StudentSituation;
+import enumeration.StudentState;
 import interfaces.GroupInterface;
 import lombok.*;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,9 +22,9 @@ public class Group implements GroupInterface {
     private String email;
     private String studyLevel;
 
-    private ArrayList<Module> groupModules = new ArrayList<Module>() ;
-    private ArrayList<Student> students = new ArrayList<Student>() ;
-    private ArrayList<Teacher> teachersByGroup = new ArrayList<Teacher>() ;
+    private ArrayList<Module> groupModules = new ArrayList<>() ;
+    private ArrayList<Student> students = new ArrayList<>() ;
+    private ArrayList<Teacher> teachersByGroup = new ArrayList<>() ;
     private static int lastId=0;
     public Group() {
         this.id=++lastId;
@@ -44,9 +45,9 @@ public class Group implements GroupInterface {
 
     @Override
     public String toString() {
-        return "Id : "+id/*+"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
+        return "Id : "+ id +"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
                 +"\nStudent Level : "+studyLevel+"\nList of Group Modules : "+groupModules+"\nList of Students : "+ students+
-                "\nList of Teachers"+teachersByGroup*/;
+                "\nList of Teachers"+teachersByGroup;
     }
 
 
@@ -140,6 +141,11 @@ public class Group implements GroupInterface {
 
     //getAllStd appel lel getter mta3 arraylist student
     //System.out.println(students.get())
+    public void listAllStds() {
+        for (Student x : students) {
+            System.out.println(x);
+        }
+    }
 
     @Override
     public List<Student> getStudentByCriteria(StudentComponents criteria,Object criteriaContent) {

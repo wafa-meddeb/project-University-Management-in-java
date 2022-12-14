@@ -1,7 +1,7 @@
 package entities;
-import Enumeration.ModuleType;
-import Enumeration.SessionState;
-import Enumeration.SessionType;
+import enumeration.ModuleType;
+import enumeration.SessionState;
+import enumeration.SessionType;
 import interfaces.ModuleInterface;
 import lombok.*;
 

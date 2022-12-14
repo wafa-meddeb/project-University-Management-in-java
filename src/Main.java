@@ -1,7 +1,8 @@
 
 import entities.*;
+import entities.Group.StudentComponents;
 import entities.Module;
-import Enumeration.*;
+import enumeration.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -133,6 +134,7 @@ public class Main {
             //menu
             int firstChoice;
             Person p;
+            Absence newAbsence = null ;
             Scanner sc = new Scanner(System.in);
             do {
                 firstChoice =mainMenu();
@@ -159,38 +161,65 @@ public class Main {
                                                 ((Student)p).setName(sc.nextLine());
                                                 System.out.println("photo url: ");
                                                 ((Student)p).setPhoto(sc.nextLine());
+
                                                 do {
                                                     System.out.println("student state: present / absent / delayed / excluded ");
                                                     ((Student)p).setStudentState(StudentState.valueOf(sc.nextLine()));
                                                 }while (((sc.nextLine()) != "present") || ((sc.nextLine()) != "absent") || ((sc.nextLine()) != "delayed") || ((sc.nextLine()) != "excluded"));
+
                                                 do{
                                                     System.out.println("student situatione: new / repeating / derogatory / other ");
                                                     ((Student)p).setStudentSituation(StudentSituation.valueOf(sc.nextLine()));
                                                 }while(((sc.nextLine()) != "new") || ((sc.nextLine()) != "repeating") || ((sc.nextLine()) != "derogatory") || ((sc.nextLine()) != "other"));
+
                                                 System.out.println("birthday: ");
                                                 ((Student)p).setBirthday(LocalDate.parse(sc.nextLine()));
-//                                                System.out.println("absence list: ");
-//                                                ((Student)p).setStudentAbsence(sc.next());
-//                                                System.out.println("group name: ");
-//                                                ((Student)p).setName();
-
+                                                System.out.println("absence list: ");
+                                                System.out.println("what is the date of the absence? ");
+                                                newAbsence.setDate((LocalDate.parse(sc.nextLine())));
+                                                ((Student)p).addAbsence(newAbsence);
+                                                System.out.println("group name: ");
+                                                ((Student)p).getGroup().setName(sc.next());
 
                                                 break;
                                             case 2:
                                                 //update an existing student
+                                                Group grp = new Group();
                                                 System.out.println("student id: ");
                                                 int stdId = sc.nextInt();
                                                 System.out.println("what is the feature which you seek to update?");
                                                 String stdFeature = sc.next();
+                                                System.out.println("what is the new info that you want to add?");
+                                                String stdNewInfo = sc.next();
+                                                grp.updateStudent(stdId,StudentComponents.valueOf(stdFeature),stdNewInfo);
+
+
                                                 break;
                                             case 3:
                                                 //remove a student
+                                                Group group = new Group();
+                                                System.out.println("student id: ");
+                                                int stdRemovId = sc.nextInt();
+                                                group.removeStudent(stdRemovId);
+
+
                                                 break;
                                             case 4:
                                                 //find student details
+                                                Group gr = new Group();
+                                                System.out.println("student id: ");
+                                                int stdShowId = sc.nextInt();
+                                                gr.getStudent(stdShowId);
+
                                                 break;
                                             case 5:
                                                 //find a student by criteria
+                                                Group g = new Group();
+                                                System.out.println("criteria: ");
+                                                String criteria = sc.next();
+                                                System.out.println("what is the content of the criteria?  ");
+                                                String criteriaCont = sc.next();
+                                                g.getStudentByCriteria(StudentComponents.valueOf(criteria),criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllStudents

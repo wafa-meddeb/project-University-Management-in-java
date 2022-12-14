@@ -1,7 +1,7 @@
 package entities;
 
-import Enumeration.StudentSituation;
-import Enumeration.StudentState;
+import enumeration.StudentSituation;
+import enumeration.StudentState;
 import interfaces.StudentInterface;
 import lombok.Getter;
 import lombok.Setter;

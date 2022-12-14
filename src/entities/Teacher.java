@@ -1,11 +1,9 @@
 package entities;
 
-import Enumeration.ModuleType;
+import enumeration.ModuleType;
 import interfaces.TeacherInterface;
-import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
