@@ -3,7 +3,6 @@ import enumeration.ModuleType;
 import enumeration.SessionState;
 import enumeration.SessionType;
 import interfaces.ModuleInterface;
-import lombok.*;
 
 
 import java.time.LocalTime;
@@ -11,12 +10,74 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Getter
-@Setter
 //@NoArgsConstructor
 //@AllArgsConstructor
 
 public class Module implements ModuleInterface {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getDue() {
+        return due;
+    }
+
+    public void setDue(float due) {
+        this.due = due;
+    }
+
+    public String getStudyLevel() {
+        return studyLevel;
+    }
+
+    public void setStudyLevel(String studyLevel) {
+        this.studyLevel = studyLevel;
+    }
+
+    public ModuleType getModuleType() {
+        return moduleType;
+    }
+
+    public void setModuleType(ModuleType moduleType) {
+        this.moduleType = moduleType;
+    }
+
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
+    }
+
+    public ArrayList<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(ArrayList<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
     private int id;
     private /*static*/ String name;
     private float due;
@@ -44,12 +105,18 @@ public class Module implements ModuleInterface {
 
     @Override
     public String toString() {
-        System.out.println("groups: "+groups);
-
         return  "Id : "+ id +"\nName : "+ name +"\nDue : "+due +"\nStudy Level : "+ studyLevel
                 +"\nmodule type : "+ moduleType +"\nSession : " + sessions + "\nteachers : " + teachers+
-                "\nGroup"+ Arrays.toString(groups.toArray());
+                "\nGroup" + this.getGroupDetails();
 
+    }
+
+    private String getGroupDetails() {
+        String result = "";
+        for (int i = 0; i<groups.size();i++ ) {
+            result = result + groups.get(i).groupDetails() + " ";
+        }
+        return result;
     }
 
     @Override

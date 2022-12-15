@@ -3,6 +3,7 @@ import entities.*;
 import entities.Group.StudentComponents;
 import entities.Module;
 import enumeration.*;
+import projectMenu.AdminActionMenu;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -223,12 +224,17 @@ public class Main {
                                                 break;
                                             case 6:
                                                 //displayAllStudents
+                                                Group gp = new Group();
+                                                System.out.println(gp.getStudents());
                                                 break;
                                             case 7:
                                                 //return to menu ManageStudentsMenu
+                                                ManageStudentsMenu();
                                                 break;
                                             case 8:
                                                 //return to AdminActionMenu
+                                                AdminActionMenu.adminActionMenu();
+                                                break;
                                             default:
                                                 System.exit(0);
 
@@ -241,6 +247,7 @@ public class Main {
                                 case 2:
                                     //manage teachers
                                     int teacherMngChoice;
+                                    Group grp = new Group();
                                     do{
                                         teacherMngChoice = ManageTeachersMenu();
                                         switch(teacherMngChoice){
@@ -249,18 +256,37 @@ public class Main {
                                                 break;
                                             case 2:
                                                 //update an existing teacher
+                                                System.out.println("teacher id: ");
+                                                int teacherId = sc.nextInt();
+                                                System.out.println("what is the feature which you seek to update?");
+                                                String teacherFeature = sc.next();
+                                                System.out.println("what is the new info that you want to add?");
+                                                String teacherNewInfo = sc.next();
+                                                grp.updateTeacher(teacherId, Group.TeacherComponents.valueOf(teacherFeature), teacherNewInfo);
                                                 break;
                                             case 3:
                                                 //remove a teacher
+                                                System.out.println("teacher id: ");
+                                                int teacherRemovId = sc.nextInt();
+                                                grp.removeTeacher(teacherRemovId);
                                                 break;
                                             case 4:
                                                 //find teacher details
+                                                System.out.println("teacher id: ");
+                                                int teacherShowId = sc.nextInt();
+                                                grp.getTeacher(teacherShowId);
                                                 break;
                                             case 5:
                                                 //find a teacher by criteria
+                                                System.out.println("criteria: ");
+                                                String criteria = sc.next();
+                                                System.out.println("what is the content of the criteria?  ");
+                                                String criteriaCont = sc.next();
+                                                grp.getTeacherByCriteria(Group.TeacherComponents.valueOf(criteria),criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllTeachers
+                                                System.out.println(grp.getTeachersByGroup());
                                                 break;
                                             case 7:
                                                 //affect to module to a teacher
@@ -270,9 +296,12 @@ public class Main {
                                                 break;
                                             case 9:
                                                 //return to menu ManageTeachersMenu
+                                                ManageTeachersMenu();
                                                 break;
                                             case 10:
                                                 //return to AdminActionMenu
+                                                AdminActionMenu.adminActionMenu();
+                                                break;
                                             default:
                                                 System.exit(0);
 
@@ -281,6 +310,7 @@ public class Main {
                                     break;
                                 case 3:
                                     //manage groups
+                                    Module module = new Module();
                                     int grpMngChoice;
                                     do{
                                         grpMngChoice = ManageGroupMenu();
@@ -290,18 +320,37 @@ public class Main {
                                                 break;
                                             case 2:
                                                 //update an existing grp
+                                                System.out.println("group id: ");
+                                                int grpId = sc.nextInt();
+                                                System.out.println("what is the feature which you seek to update?");
+                                                String grpFeature = sc.next();
+                                                System.out.println("what is the new info that you want to add?");
+                                                String grpNewInfo = sc.next();
+                                                module.updateGroup(grpId, Module.GroupComponents.valueOf(grpFeature), grpNewInfo);
                                                 break;
                                             case 3:
                                                 //remove a grp
+                                                System.out.println("group id: ");
+                                                int grpRemovId = sc.nextInt();
+                                                module.removeGroup(grpRemovId);
                                                 break;
                                             case 4:
                                                 //find grp details
+                                                System.out.println("group id: ");
+                                                int grpShowId = sc.nextInt();
+                                                module.getGroup(grpShowId);
                                                 break;
                                             case 5:
                                                 //find a grp by criteria
+                                                System.out.println("criteria: ");
+                                                String criteria = sc.next();
+                                                System.out.println("what is the content of the criteria?  ");
+                                                String criteriaCont = sc.next();
+                                                module.getGroupByCriteria(Module.GroupComponents.valueOf(criteria),criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllGroups
+                                                System.out.println(module.getGroups());
                                                 break;
                                             case 7:
                                                 //Affect a module to a group
@@ -311,9 +360,12 @@ public class Main {
                                                 break;
                                             case 9:
                                                 //return to menu ManageGroupMenu
+                                                ManageGroupMenu();
                                                 break;
                                             case 10:
                                                 //return to AdminActionMenu
+                                                AdminActionMenu.adminActionMenu();
+                                                break;
                                             default:
                                                 System.exit(0);
 
@@ -323,6 +375,7 @@ public class Main {
                                 case 4:
                                     //manage sessions
                                     int sessionsMngChoice;
+                                    Module module2 = new Module();
                                     do{
                                         sessionsMngChoice = ManageSessionsMenu();
                                         switch(sessionsMngChoice){
@@ -331,24 +384,46 @@ public class Main {
                                                 break;
                                             case 2:
                                                 //update an existing session
+                                                System.out.println("session id: ");
+                                                int sessionId = sc.nextInt();
+                                                System.out.println("what is the feature which you seek to update?");
+                                                String sessionFeature = sc.next();
+                                                System.out.println("what is the new info that you want to add?");
+                                                String sessionNewInfo = sc.next();
+                                                module2.updateSession(sessionId, Module.SessionComponents.valueOf(sessionFeature), sessionNewInfo);
                                                 break;
                                             case 3:
                                                 //remove a session
+                                                System.out.println("session id: ");
+                                                int sessRemovId = sc.nextInt();
+                                                module2.removeSession(sessRemovId);
                                                 break;
                                             case 4:
                                                 //find session details
+                                                System.out.println("session id: ");
+                                                int sessShowId = sc.nextInt();
+                                                module2.getSession(sessShowId);
                                                 break;
                                             case 5:
                                                 //find a session by criteria
+                                                System.out.println("criteria: ");
+                                                String criteria = sc.next();
+                                                System.out.println("what is the content of the criteria?  ");
+                                                String criteriaCont = sc.next();
+                                                module2.getSessionByCriteria(Module.SessionComponents.valueOf(criteria),criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllSessions
+                                                System.out.println(module2.getSessions());
                                                 break;
                                             case 7:
                                                 //return to menu ManageSessionsMenu
+                                                ManageSessionsMenu();
                                                 break;
                                             case 8:
                                                 //return to AdminActionMenu
+                                                AdminActionMenu.adminActionMenu();
+                                                break;
                                             default:
                                                 System.exit(0);
 
@@ -358,6 +433,7 @@ public class Main {
 
                                 case 5:
                                     //manage modules
+                                    Group group = new Group();
                                     int modulesMngChoice;
                                     do{
                                         modulesMngChoice = ManageModulesMenu();
@@ -367,18 +443,37 @@ public class Main {
                                                 break;
                                             case 2:
                                                 //update an existing module
+                                                System.out.println("module id: ");
+                                                int moduleId = sc.nextInt();
+                                                System.out.println("what is the feature which you seek to update?");
+                                                String moduleFeature = sc.next();
+                                                System.out.println("what is the new info that you want to add?");
+                                                String moduleNewInfo = sc.next();
+                                                group.updateModule(moduleId, Group.ModuleComponents.valueOf(moduleFeature), moduleNewInfo);
                                                 break;
                                             case 3:
                                                 //remove a module
+                                                System.out.println("module id: ");
+                                                int modRemovId = sc.nextInt();
+                                                group.removeModule(modRemovId);
                                                 break;
                                             case 4:
                                                 //find module details
+                                                System.out.println("module id: ");
+                                                int modShowId = sc.nextInt();
+                                                group.getModule(modShowId);
                                                 break;
                                             case 5:
                                                 //find a module by criteria
+                                                System.out.println("criteria: ");
+                                                String criteria = sc.next();
+                                                System.out.println("what is the content of the criteria?  ");
+                                                String criteriaCont = sc.next();
+                                                group.getModuleByCriteria(Group.ModuleComponents.valueOf(criteria),criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllModules
+                                                System.out.println(group.getGroupModules());
                                                 break;
                                             case 7:
                                                 //affect a group to a module
@@ -388,9 +483,11 @@ public class Main {
                                                 break;
                                             case 9:
                                                 //return to menu ManageModulesMenu
+                                                ManageModulesMenu();
                                                 break;
                                             case 10:
                                                 //return to AdminActionMenu
+                                                AdminActionMenu.adminActionMenu();
                                             default:
                                                 System.exit(0);
 

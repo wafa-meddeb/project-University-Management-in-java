@@ -3,28 +3,87 @@ import enumeration.ModuleType;
 import enumeration.StudentSituation;
 import enumeration.StudentState;
 import interfaces.GroupInterface;
-import lombok.*;
-
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
-
-//@NoArgsConstructor
-//@AllArgsConstructor
 public class Group implements GroupInterface {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getStudentsNumber() {
+        return studentsNumber;
+    }
+
+    public void setStudentsNumber(int studentsNumber) {
+        this.studentsNumber = studentsNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStudyLevel() {
+        return studyLevel;
+    }
+
+    public void setStudyLevel(String studyLevel) {
+        this.studyLevel = studyLevel;
+    }
+
+    public ArrayList<Module> getGroupModules() {
+        return groupModules;
+    }
+
+    public void setGroupModules(ArrayList<Module> groupModules) {
+        this.groupModules = groupModules;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(ArrayList<Student> students) {
+        this.students = students;
+    }
+
+    public ArrayList<Teacher> getTeachersByGroup() {
+        return teachersByGroup;
+    }
+
+    public void setTeachersByGroup(ArrayList<Teacher> teachersByGroup) {
+        this.teachersByGroup = teachersByGroup;
+    }
+
+
     private int id;
     private String name;
     private int studentsNumber;
     private String email;
     private String studyLevel;
 
-    private ArrayList<Module> groupModules = new ArrayList<>() ;
-    private ArrayList<Student> students = new ArrayList<>() ;
-    private ArrayList<Teacher> teachersByGroup = new ArrayList<>() ;
+    private ArrayList<Module> groupModules = new ArrayList<Module>() ;
+    private ArrayList<Student> students = new ArrayList<Student>() ;
+    private ArrayList<Teacher> teachersByGroup = new ArrayList<Teacher>() ;
     private static int lastId=0;
     public Group() {
         this.id=++lastId;
@@ -45,17 +104,16 @@ public class Group implements GroupInterface {
 
     @Override
     public String toString() {
-        return "Id : "+ id +"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
-                +"\nStudent Level : "+studyLevel+"\nList of Group Modules : "+groupModules+"\nList of Students : "+ students+
-                "\nList of Teachers"+teachersByGroup;
+        return "Id : "+id+"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
+                +"\nStudent Level : "+studyLevel+"\nList of Students : "+ students+
+                "\nList of Teachers"+teachersByGroup + "\nList of Group Modules : "+groupModules;
     }
 
-
-//    @Override
-//    public void renameStudent(int index, String name) {
-//        students.get(index).setName(name) ;
-//    }
-
+    public String groupDetails() {
+        return "Id : "+id+"\nName : "+name+"\nStudent Number : "+studentsNumber+"\nEmail : "+email
+                +"\nStudent Level : "+studyLevel+"\nList of Students : "+ students+
+                "\nList of Teachers"+teachersByGroup;
+    }
 
     @Override
     public void addStudent(Student std) {
@@ -141,11 +199,6 @@ public class Group implements GroupInterface {
 
     //getAllStd appel lel getter mta3 arraylist student
     //System.out.println(students.get())
-    public void listAllStds() {
-        for (Student x : students) {
-            System.out.println(x);
-        }
-    }
 
     @Override
     public List<Student> getStudentByCriteria(StudentComponents criteria,Object criteriaContent) {
@@ -244,7 +297,7 @@ public class Group implements GroupInterface {
 
     @Override
     public List<Teacher> getTeacherByCriteria(TeacherComponents criteria,Object criteriaContent) {
-        ArrayList<Teacher> teacherByCriteriaList = new ArrayList<Teacher>();
+        ArrayList<Teacher> teacherByCriteriaList = new ArrayList<>();
         for (int i = 0; i < teachersByGroup.size(); i++) {
             if (teachersByGroup.get(i) == criteriaContent) {
                 teacherByCriteriaList.add(teachersByGroup.get(i));
