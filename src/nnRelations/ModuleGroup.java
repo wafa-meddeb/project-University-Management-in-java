@@ -15,6 +15,9 @@ import java.util.*;
 public class ModuleGroup {
     private Module module;
     private Group group;
+
+    private int moduleId;
+    private int groupId;
     private int year;
 
     public ModuleGroup(Module module, Group group, int year) {
@@ -22,8 +25,17 @@ public class ModuleGroup {
         this.group = group;
         this.year = year;
     }
+    public ModuleGroup(int moduleId, int groupId, int year) {
+        this.moduleId = moduleId;
+        this.groupId = groupId;
+        this.year = year;
+    }
 
     ArrayList<ModuleGroup> moduleGrpLst = new ArrayList<>();
+    public void addModuleGrp(int moduleId, int groupId, int year) {
+        ModuleGroup moduleGrp = new ModuleGroup(moduleId, groupId, year);
+        moduleGrpLst.add(moduleGrp);
+    }
 
     public void addModuleGrp(Module module, Group group, int year) {
         ModuleGroup moduleGrp = new ModuleGroup(module, group, year);

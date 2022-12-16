@@ -3,6 +3,9 @@ import entities.*;
 import entities.Group.StudentComponents;
 import entities.Module;
 import enumeration.*;
+import nnRelations.ModuleGroup;
+import nnRelations.ModuleTeacher;
+import nnRelations.TeacherGrp;
 import projectMenu.AdminActionMenu;
 
 import java.time.LocalDate;
@@ -159,21 +162,21 @@ public class Main {
                                                 System.out.println("first Name: ");
                                                 ((Student)p).setName(sc.nextLine());
                                                 System.out.println("last Name: ");
-                                                ((Student)p).setName(sc.nextLine());
+                                                ((Student)p).setFamilyName(sc.nextLine());
                                                 System.out.println("photo url: ");
                                                 ((Student)p).setPhoto(sc.nextLine());
 
-                                                do {
-                                                    System.out.println("student state: present / absent / delayed / excluded ");
-                                                    ((Student)p).setStudentState(StudentState.valueOf(sc.nextLine()));
-                                                }while (((sc.nextLine()) != "present") || ((sc.nextLine()) != "absent") || ((sc.nextLine()) != "delayed") || ((sc.nextLine()) != "excluded"));
+//                                                do {
+//                                                    System.out.println("student state: Present / Absent / Delayed / Excluded ");
+//                                                    ((Student)p).setStudentState(StudentState.valueOf(sc.next()));
+//                                                }while (((sc.nextLine()) != "Present") || ((sc.nextLine()) != "Absent") || ((sc.nextLine()) != "Delayed") || ((sc.nextLine()) != "Excluded"));
+//
+//                                                do{
+//                                                    System.out.println("student situatione: New / Repeating / Derogatory / other ");
+//                                                    ((Student)p).setStudentSituation(StudentSituation.valueOf(sc.nextLine()));
+//                                                }while(((sc.nextLine()) != "New") || ((sc.nextLine()) != "Repeating") || ((sc.nextLine()) != "Derogatory") || ((sc.nextLine()) != "other"));
 
-                                                do{
-                                                    System.out.println("student situatione: new / repeating / derogatory / other ");
-                                                    ((Student)p).setStudentSituation(StudentSituation.valueOf(sc.nextLine()));
-                                                }while(((sc.nextLine()) != "new") || ((sc.nextLine()) != "repeating") || ((sc.nextLine()) != "derogatory") || ((sc.nextLine()) != "other"));
-
-                                                System.out.println("birthday: ");
+                                                System.out.println("birthday: (year-month-day) ");
                                                 ((Student)p).setBirthday(LocalDate.parse(sc.nextLine()));
                                                 System.out.println("absence list: ");
                                                 System.out.println("what is the date of the absence? ");
@@ -181,6 +184,7 @@ public class Main {
                                                 ((Student)p).addAbsence(newAbsence);
                                                 System.out.println("group name: ");
                                                 ((Student)p).getGroup().setName(sc.next());
+                                                System.out.println("student added successfully");
 
                                                 break;
                                             case 2:
@@ -248,11 +252,25 @@ public class Main {
                                     //manage teachers
                                     int teacherMngChoice;
                                     Group grp = new Group();
+                                    Teacher teacher = new Teacher();
                                     do{
                                         teacherMngChoice = ManageTeachersMenu();
                                         switch(teacherMngChoice){
                                             case 1:
                                                 //add a teacher
+                                                System.out.println("first Name: ");
+                                                teacher.setName(sc.nextLine());
+                                                System.out.println("last Name: ");
+                                                teacher.setFamilyName(sc.nextLine());
+                                                System.out.println("photo url: ");
+                                                teacher.setPhoto(sc.nextLine());
+                                                System.out.println("personal email: ");
+                                                teacher.setPersonalEmail(sc.nextLine());
+                                                System.out.println("work email: ");
+                                                teacher.setWorkEmail(sc.nextLine());
+                                                System.out.println("due:  ");
+                                                teacher.setDue(sc.nextFloat());
+                                                System.out.println("teacher added successfully");
                                                 break;
                                             case 2:
                                                 //update an existing teacher
@@ -289,10 +307,28 @@ public class Main {
                                                 System.out.println(grp.getTeachersByGroup());
                                                 break;
                                             case 7:
-                                                //affect to module to a teacher
+                                                //affect a module to a teacher
+                                                ModuleTeacher moduleTeacher = new ModuleTeacher();
+                                                System.out.println("enter the module id which you want to affect: ");
+                                                int moduleId = sc.nextInt();
+                                                System.out.println("enter the teacher id : ");
+                                                int teachId = sc.nextInt();
+
+                                                moduleTeacher.addModuleTeacher(moduleId,teachId);
+
+
+
                                                 break;
                                             case 8:
-                                                //affect to grp to a teacher
+                                                //affect a grp to a teacher
+                                                TeacherGrp teacherGrp = new TeacherGrp();
+                                                System.out.println("enter the group id which you want to affect: ");
+                                                int grpId = sc.nextInt();
+                                                System.out.println("enter the teacher id : ");
+                                                int tId = sc.nextInt();
+                                                teacherGrp.addGroupTeacher(tId,grpId);
+
+
                                                 break;
                                             case 9:
                                                 //return to menu ManageTeachersMenu
@@ -317,6 +353,16 @@ public class Main {
                                         switch(grpMngChoice){
                                             case 1:
                                                 //add a grp
+                                                Group group = new Group();
+                                                System.out.println("group Name: ");
+                                                group.setName(sc.nextLine());
+                                                System.out.println("students number: ");
+                                                group.setStudentsNumber(sc.nextInt());
+                                                System.out.println("group email: ");
+                                                group.setEmail(sc.nextLine());
+                                                System.out.println("study level: ");
+                                                group.setStudyLevel(sc.nextLine());
+                                                System.out.println("group added successfully");
                                                 break;
                                             case 2:
                                                 //update an existing grp
@@ -354,9 +400,25 @@ public class Main {
                                                 break;
                                             case 7:
                                                 //Affect a module to a group
+                                                ModuleGroup modGrp = new ModuleGroup();
+                                                System.out.println("enter the module id which you want to affect: ");
+                                                int mId = sc.nextInt();
+                                                System.out.println("enter the group id : ");
+                                                int gId = sc.nextInt();
+                                                System.out.println("enter the year : ");
+                                                int year = sc.nextInt();
+
+                                                modGrp.addModuleGrp(mId, gId,year);
                                                 break;
                                             case 8:
                                                 //Affect a teacher to a group
+                                                TeacherGrp teacherGrp = new TeacherGrp();
+                                                System.out.println("enter the group id : ");
+                                                int grId = sc.nextInt();
+                                                System.out.println("enter the teacher id : ");
+                                                int teachId = sc.nextInt();
+
+                                                teacherGrp.addGroupTeacher(teachId,grId);
                                                 break;
                                             case 9:
                                                 //return to menu ManageGroupMenu
@@ -381,6 +443,54 @@ public class Main {
                                         switch(sessionsMngChoice){
                                             case 1:
                                                 //add a session
+                                                Session sess = new Session();
+                                                System.out.println("session start time : ");
+                                                LocalTime startTime = LocalTime.parse(sc.nextLine());
+                                                System.out.println("session end time: ");
+                                                LocalTime endTime = LocalTime.parse(sc.nextLine());
+
+                                                System.out.println("online or in person session?  ");
+                                                System.out.println("type: 'o': online");
+                                                System.out.println("type: 'p': in person");
+                                                Character response =sc.next().charAt(0);
+                                                if ((Character.toUpperCase(response))=='O'){
+                                                    System.out.println("classroom number ");
+                                                    String classNbre = sc.nextLine();
+                                                }
+                                                else{
+                                                    String classNbre = null;
+                                                }
+
+
+                                                System.out.println("session Goal: ");
+                                                String goal = sc.nextLine();
+                                                System.out.println("session summary: ");
+                                                String summary = sc.nextLine();
+
+                                                System.out.println("do you want to enter information about the tools used during the session?  ");
+                                                System.out.println("type: 'y': yes");
+                                                System.out.println("type: 'n': no");
+                                                Character res =sc.next().charAt(0);
+                                                if ((Character.toUpperCase(res))=='Y'){
+                                                    System.out.println("tools: ");
+                                                    String tools = sc.nextLine();
+                                                }
+                                                else{
+                                                    String tools = null;
+                                                }
+
+//                                                do {
+//                                                    System.out.println("session state: running / achieved / canceled / delayed ");
+//                                                    String sessState = sc.nextLine() ;
+//                                                }while (((sc.nextLine()) != "present") || ((sc.nextLine()) != "absent") || ((sc.nextLine()) != "delayed") || ((sc.nextLine()) != "excluded"));
+//
+//                                                do{
+//                                                    System.out.println("session type: normal / catching-up / support / training ");
+//                                                    ((Student)p).setStudentSituation(StudentSituation.valueOf(sc.nextLine()));
+//                                                }while(((sc.nextLine()) != "new") || ((sc.nextLine()) != "repeating") || ((sc.nextLine()) != "derogatory") || ((sc.nextLine()) != "other"));
+
+
+                                                System.out.println("session added successfully");
                                                 break;
                                             case 2:
                                                 //update an existing session
@@ -440,6 +550,18 @@ public class Main {
                                         switch(modulesMngChoice){
                                             case 1:
                                                 //add a module
+                                                Module module3 = new Module();
+                                                System.out.println("module name: ");
+                                                module3.setName(sc.nextLine());
+                                                System.out.println("module due: ");
+                                                module3.setDue(sc.nextFloat());
+                                                System.out.println("study level: ");
+                                                module3.setStudyLevel(sc.nextLine());
+                                                do{
+                                                    System.out.println("module type: optional / required ");
+                                                    module3.setModuleType(ModuleType.valueOf(sc.nextLine()));
+                                                }while(((sc.nextLine()) != "optional") || ((sc.nextLine()) != "required"));
+
                                                 break;
                                             case 2:
                                                 //update an existing module
@@ -477,9 +599,25 @@ public class Main {
                                                 break;
                                             case 7:
                                                 //affect a group to a module
+                                                ModuleGroup modGrp = new ModuleGroup();
+                                                System.out.println("enter the module id : ");
+                                                int mId = sc.nextInt();
+                                                System.out.println("enter the group id : ");
+                                                int gId = sc.nextInt();
+                                                System.out.println("enter the year : ");
+                                                int year = sc.nextInt();
+
+                                                modGrp.addModuleGrp(mId, gId,year);
                                                 break;
                                             case 8:
                                                 //affect a teacher to a module
+                                                ModuleTeacher moduleTeacher = new ModuleTeacher();
+                                                System.out.println("enter the module id : ");
+                                                int modId = sc.nextInt();
+                                                System.out.println("enter the teacher id : ");
+                                                int teachId = sc.nextInt();
+
+                                                moduleTeacher.addModuleTeacher(modId,teachId);
                                                 break;
                                             case 9:
                                                 //return to menu ManageModulesMenu
@@ -506,26 +644,26 @@ public class Main {
                             switch (teacherActionChoice) {
                                 case 1:
                                     //absenteeism by one group
-//                                    int studentsAbsenteeisme =0;
-//
-//                                    for(int i = 0;i<group1.getStudents().size();i++){
-//                                        studentsAbsenteeisme += group1.getStudents().get(i).getStudentAbsence().size();
-//
-//
-//                                    }
-//                                    System.out.println("moy d'absence par grp= "+ studentsAbsenteeisme/group1.getStudentsNumber());
+                                    int studentsAbsenteeisme =0;
+
+                                    for(int i = 0;i<group1.getStudents().size();i++){
+                                        studentsAbsenteeisme += group1.getStudents().get(i).getStudentAbsence().size();
+
+
+                                    }
+                                    System.out.println("moy d'absence par grp= "+ studentsAbsenteeisme/group1.getStudentsNumber());
                                     break;
                                 case 2:
                                     //absenteeism by  groups
-//                                    int absenteeismByGrps =0;
-//                                    int grpListAbsenteeism =0;
-//                                    for(int i=0;i<groupsList.size();i++){
-//                                        for(int j=0;i<groupsList.get(j).getStudents().size();j++){
-//                                            grpListAbsenteeism += groupsList.get(j).getStudents().get(j).getStudentAbsence().size();
-//                                        }
-//                                    }
-//                                    int totalStdNbre = group1.getStudentsNumber()+group2.getStudentsNumber();
-//                                    System.out.println("moy d'absence par grp= "+ grpListAbsenteeism/totalStdNbre);
+                                    int absenteeismByGrps =0;
+                                    int grpListAbsenteeism =0;
+                                    for(int i=0;i<groupsList.size();i++){
+                                        for(int j=0;i<groupsList.get(j).getStudents().size();j++){
+                                            grpListAbsenteeism += groupsList.get(j).getStudents().get(j).getStudentAbsence().size();
+                                        }
+                                    }
+                                    int totalStdNbre = group1.getStudentsNumber()+group2.getStudentsNumber();
+                                    System.out.println("moy d'absence par grp= "+ grpListAbsenteeism/totalStdNbre);
 
 
                                     break;

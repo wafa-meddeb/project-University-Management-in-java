@@ -14,6 +14,17 @@ import java.util.List;
 //@AllArgsConstructor
 
 public class Module implements ModuleInterface {
+
+    private int id;
+    private /*static*/ String name;
+    private float due;
+    private String studyLevel;
+    private ModuleType moduleType;
+
+    private ArrayList<Session> sessions = new ArrayList<>();
+    private ArrayList<Teacher> teachers = new ArrayList<>();
+    private ArrayList<Group> groups =new ArrayList<>();
+
     public int getId() {
         return id;
     }
@@ -78,15 +89,6 @@ public class Module implements ModuleInterface {
         this.groups = groups;
     }
 
-    private int id;
-    private /*static*/ String name;
-    private float due;
-    private String studyLevel;
-    private ModuleType moduleType;
-
-    private ArrayList<Session> sessions = new ArrayList<>();
-    private ArrayList<Teacher> teachers = new ArrayList<>();
-    private ArrayList<Group> groups =new ArrayList<>();
     private static int lastId=0;
     public Module() {
         this.id=++lastId;

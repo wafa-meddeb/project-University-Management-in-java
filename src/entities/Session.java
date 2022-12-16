@@ -56,6 +56,7 @@ public class Session implements SessionInterface {
             this.classroomNumber = null ;
         }
     }
+
     @Override
     public String toString() {
         return "Id : "+id+"\nStartTime : "+getStartTime()+"\nEnd Time : "+getEndTime()+"\nGoal : "+getGoal()

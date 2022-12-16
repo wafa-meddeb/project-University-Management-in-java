@@ -10,6 +10,17 @@ import java.util.List;
 
 public class Group implements GroupInterface {
 
+
+
+    private int id;
+    private String name;
+    private int studentsNumber;
+    private String email;
+    private String studyLevel;
+
+    private ArrayList<Module> groupModules = new ArrayList<Module>() ;
+    private ArrayList<Student> students = new ArrayList<Student>() ;
+    private ArrayList<Teacher> teachersByGroup = new ArrayList<Teacher>() ;
     public int getId() {
         return id;
     }
@@ -74,16 +85,6 @@ public class Group implements GroupInterface {
         this.teachersByGroup = teachersByGroup;
     }
 
-
-    private int id;
-    private String name;
-    private int studentsNumber;
-    private String email;
-    private String studyLevel;
-
-    private ArrayList<Module> groupModules = new ArrayList<Module>() ;
-    private ArrayList<Student> students = new ArrayList<Student>() ;
-    private ArrayList<Teacher> teachersByGroup = new ArrayList<Teacher>() ;
     private static int lastId=0;
     public Group() {
         this.id=++lastId;

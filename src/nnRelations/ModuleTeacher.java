@@ -19,13 +19,24 @@ public class ModuleTeacher {
 
     private Module module;
     private Teacher teacher;
+    private int moduleId;
+    private int teacherId;
 
     public ModuleTeacher(Module module, Teacher teacher) {
         this.module = module;
         this.teacher = teacher;
     }
 
+    public ModuleTeacher(int moduleId, int teacherId) {
+        this.moduleId = moduleId;
+        this.teacherId = teacherId;
+    }
+
     ArrayList<ModuleTeacher> moduleTeacherLst = new ArrayList<>();
+    public void addModuleTeacher(int moduleId, int teacherId) {
+        ModuleTeacher moduleTeacher = new ModuleTeacher(moduleId,teacherId);
+        moduleTeacherLst.add(moduleTeacher);
+    }
 
     public void addModuleTeacher(Module module, Teacher teacher) {
         ModuleTeacher moduleTeacher = new ModuleTeacher(module,teacher);

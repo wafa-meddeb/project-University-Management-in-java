@@ -18,12 +18,27 @@ public class TeacherGrp {
     private Teacher teacher;
     private Group group;
 
+    private int teacherId;
+    private int grpId;
+
+
     public TeacherGrp(Teacher teacher, Group group) {
         this.teacher = teacher;
         this.group = group;
 
     }
+
+    public TeacherGrp(int teacherId, int grpId) {
+        this.teacherId = teacherId;
+        this.grpId = grpId;
+    }
+
     ArrayList<TeacherGrp> groupTeacherLst = new ArrayList<>();
+
+    public void addGroupTeacher(int teacherId, int grpId) {
+        TeacherGrp teacherGrp = new TeacherGrp(teacherId,grpId);
+        groupTeacherLst.add(teacherGrp);
+    }
 
     public void addGroupTeacher(Group group, Teacher teacher) {
         TeacherGrp teacherGrp = new TeacherGrp(teacher, group);
