@@ -3,7 +3,7 @@ package projectMenu;
 import java.util.Scanner;
 
 public class AdminActionMenu {
-    public static int adminActionMenu() {
+    public static int AdminActionMenu() {
         System.out.println("please choose one of the choices provided to define your action");
         System.out.println("1. manage students");
         System.out.println("2. manage teachers");

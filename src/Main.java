@@ -6,14 +6,14 @@ import enumeration.*;
 import nnRelations.ModuleGroup;
 import nnRelations.ModuleTeacher;
 import nnRelations.TeacherGrp;
-import projectMenu.AdminActionMenu;
+import projectMenu.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static projectMenu.AdminActionMenu.adminActionMenu;
+import static projectMenu.AdminActionMenu.AdminActionMenu;
 import static projectMenu.ManageGroupMenu.ManageGroupMenu;
 import static projectMenu.ManageTeachersMenu.ManageTeachersMenu;
 import static projectMenu.MenuPrincipal.mainMenu;
@@ -26,12 +26,14 @@ public class Main {
 
         public static void main(String[] args) {
 
-
             //menu
             int firstChoice;
             Person p;
             Absence newAbsence = null ;
             Scanner sc = new Scanner(System.in);
+            Group grp = new Group();
+            Module module = new Module();
+            Session session = new Session();
             do {
                 firstChoice =mainMenu();
 
@@ -39,12 +41,13 @@ public class Main {
                 switch (firstChoice) {
                     case 1:
                         //admin action
-                        int adminActionChoice = adminActionMenu();
+                        int adminActionChoice = AdminActionMenu();
                         do {
                             switch (adminActionChoice) {
                                 case 1:
                                     //manage students
                                     int stdMngChoice;
+
                                     do{
                                         stdMngChoice = ManageStudentsMenu();
                                         switch(stdMngChoice) {
@@ -75,7 +78,7 @@ public class Main {
 
                                                 int stdSituation;
                                                 do {
-                                                    System.out.println("student situation: New / Repeating / Derogatory / other ");
+                                                    System.out.println("student situation: \n 1: New \n 2: Repeating \n 3: Derogatory \n 4: other ");
                                                     stdSituation = sc.nextInt();
                                                     if (stdSituation == 1)
                                                         ((Student) p).setStudentSituation(StudentSituation.New);
@@ -87,8 +90,8 @@ public class Main {
                                                         ((Student) p).setStudentSituation(StudentSituation.other);
                                                 } while ((stdSituation < 1) || (stdSituation > 4));
 
-                                                System.out.println("birthday: (year-month-day) ");
-                                                ((Student) p).setBirthday(LocalDate.parse(sc.nextLine()));
+//                                                System.out.println("birthday: (year-month-day) ");
+//                                                ((Student) p).setBirthday(LocalDate.parse(sc.nextLine()));
                                                 System.out.println("do you want to add an absence for this student?");
                                                 System.out.println("type: Y:yes or N:No");
                                                 char response = sc.next().charAt(0);
@@ -101,15 +104,16 @@ public class Main {
                                                     newAbsence = null;
                                                 ((Student) p).addAbsence(newAbsence);
 
-
                                                 System.out.println("group name: ");
-                                                ((Student) p).getGroup().setName(sc.next());
+                                                ((Student) p).getGroup().setName(sc.nextLine());
+
+                                                grp.addStudent((Student) p);
                                                 System.out.println("student added successfully");
 
                                                 break;
                                             case 2:
                                                 //update an existing student
-                                                Group grp = new Group();
+
                                                 System.out.println("student id: ");
                                                 int stdId = sc.nextInt();
                                                 System.out.println("what is the feature which you seek to update?");
@@ -122,42 +126,41 @@ public class Main {
                                                 break;
                                             case 3:
                                                 //remove a student
-                                                Group group = new Group();
+
                                                 System.out.println("student id: ");
                                                 int stdRemovId = sc.nextInt();
-                                                group.removeStudent(stdRemovId);
+                                                grp.removeStudent(stdRemovId);
 
 
                                                 break;
                                             case 4:
                                                 //find student details
-                                                Group gr = new Group();
+
                                                 System.out.println("student id: ");
                                                 int stdShowId = sc.nextInt();
-                                                gr.getStudent(stdShowId);
+                                                grp.getStudent(stdShowId);
 
                                                 break;
                                             case 5:
                                                 //find a student by criteria
-                                                Group g = new Group();
+
                                                 System.out.println("criteria: ");
                                                 String criteria = sc.next();
                                                 System.out.println("what is the content of the criteria?  ");
                                                 String criteriaCont = sc.next();
-                                                g.getStudentByCriteria(StudentComponents.valueOf(criteria), criteriaCont);
+                                                grp.getStudentByCriteria(StudentComponents.valueOf(criteria), criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllStudents
-                                                Group gp = new Group();
-                                                System.out.println(gp.getStudents());
+                                                System.out.println(grp.getStudents());
                                                 break;
                                             case 7:
                                                 //return to menu ManageStudentsMenu
-                                                ManageStudentsMenu();
+                                                ManageStudentsMenu.ManageStudentsMenu();
                                                 break;
                                             case 8:
                                                 //return to AdminActionMenu
-                                                AdminActionMenu.adminActionMenu();
+                                                AdminActionMenu.AdminActionMenu();
                                                 break;
                                             default:
                                                 System.exit(0);
@@ -171,7 +174,7 @@ public class Main {
                                 case 2:
                                     //manage teachers
                                     int teacherMngChoice;
-                                    Group grp = new Group();
+
                                     Teacher teacher = new Teacher();
                                     do{
                                         teacherMngChoice = ManageTeachersMenu();
@@ -179,7 +182,7 @@ public class Main {
                                             case 1:
                                                 //add a teacher
                                                 System.out.println("first Name: ");
-                                                teacher.setName(sc.nextLine());
+                                                grp.setName(sc.nextLine());
                                                 System.out.println("last Name: ");
                                                 teacher.setFamilyName(sc.nextLine());
                                                 System.out.println("photo url: ");
@@ -190,7 +193,10 @@ public class Main {
                                                 teacher.setWorkEmail(sc.nextLine());
                                                 System.out.println("due:  ");
                                                 teacher.setDue(sc.nextFloat());
+
+                                                grp.addTeacher(teacher);
                                                 System.out.println("teacher added successfully");
+
                                                 break;
                                             case 2:
                                                 //update an existing teacher
@@ -252,11 +258,11 @@ public class Main {
                                                 break;
                                             case 9:
                                                 //return to menu ManageTeachersMenu
-                                                ManageTeachersMenu();
+                                                ManageTeachersMenu.ManageTeachersMenu();
                                                 break;
                                             case 10:
                                                 //return to AdminActionMenu
-                                                AdminActionMenu.adminActionMenu();
+                                                AdminActionMenu.AdminActionMenu();
                                                 break;
                                             default:
                                                 System.exit(0);
@@ -266,22 +272,22 @@ public class Main {
                                     break;
                                 case 3:
                                     //manage groups
-                                    Module module = new Module();
+//                                    Module module = new Module();
                                     int grpMngChoice;
                                     do{
                                         grpMngChoice = ManageGroupMenu();
                                         switch(grpMngChoice){
                                             case 1:
                                                 //add a grp
-                                                Group group = new Group();
+//                                                Group group = new Group();
                                                 System.out.println("group Name: ");
-                                                group.setName(sc.nextLine());
+                                                grp.setName(sc.nextLine());
                                                 System.out.println("students number: ");
-                                                group.setStudentsNumber(sc.nextInt());
+                                                grp.setStudentsNumber(sc.nextInt());
                                                 System.out.println("group email: ");
-                                                group.setEmail(sc.nextLine());
+                                                grp.setEmail(sc.nextLine());
                                                 System.out.println("study level: ");
-                                                group.setStudyLevel(sc.nextLine());
+                                                grp.setStudyLevel(sc.nextLine());
                                                 System.out.println("group added successfully");
                                                 break;
                                             case 2:
@@ -342,11 +348,11 @@ public class Main {
                                                 break;
                                             case 9:
                                                 //return to menu ManageGroupMenu
-                                                ManageGroupMenu();
+                                                ManageGroupMenu.ManageGroupMenu();
                                                 break;
                                             case 10:
                                                 //return to AdminActionMenu
-                                                AdminActionMenu.adminActionMenu();
+                                                AdminActionMenu.AdminActionMenu();
                                                 break;
                                             default:
                                                 System.exit(0);
@@ -357,33 +363,42 @@ public class Main {
                                 case 4:
                                     //manage sessions
                                     int sessionsMngChoice;
-                                    Module module2 = new Module();
+//                                    Module module2 = new Module();
                                     do{
                                         sessionsMngChoice = ManageSessionsMenu();
                                         switch(sessionsMngChoice) {
                                             case 1:
                                                 //add a session
-                                                Session sess = new Session();
+
                                                 System.out.println("session start time : ");
-                                                LocalTime startTime = LocalTime.parse(sc.nextLine());
+//                                                LocalTime startTime = LocalTime.parse(sc.nextLine());
+                                                session.setStartTime(LocalTime.parse(sc.nextLine()));
                                                 System.out.println("session end time: ");
-                                                LocalTime endTime = LocalTime.parse(sc.nextLine());
+//                                                LocalTime endTime = LocalTime.parse(sc.nextLine());
+                                                session.setEndTime(LocalTime.parse(sc.nextLine()));
 
                                                 System.out.println("online or in person session?  ");
                                                 System.out.println("type: 'o': online");
                                                 System.out.println("type: 'p': in person");
                                                 Character response = sc.next().charAt(0);
+
                                                 if ((Character.toUpperCase(response)) == 'P') {
-                                                    System.out.println("classroom number ");
-                                                    String classNbre = sc.nextLine();
+                                                    System.out.println("classroom number: ");
+                                                    String classNbre = sc.next();
+                                                    session.setClassroomNumber(classNbre);
+                                                   // System.out.println(classNbre);
                                                 } else {
                                                     String classNbre = null;
                                                 }
 
                                                 System.out.println("session Goal: ");
                                                 String goal = sc.nextLine();
+                                                session.setGoal(goal);
+
                                                 System.out.println("session summary: ");
                                                 String summary = sc.nextLine();
+                                                session.setSummary(summary);
+                                                System.out.println(summary);
 
                                                 System.out.println("do you want to enter information about the tools used during the session?  ");
                                                 System.out.println("type: 'y': yes");
@@ -392,6 +407,7 @@ public class Main {
                                                 if ((Character.toUpperCase(res)) == 'Y') {
                                                     System.out.println("tools: ");
                                                     String tools = sc.nextLine();
+                                                    session.setTools(tools);
                                                 } else {
                                                     String tools = null;
                                                 }
@@ -401,13 +417,13 @@ public class Main {
                                                     System.out.println("session state: \n 1: running \n 2:  achieved  \n 3: canceled \n 4: delayed ");
                                                     sessState = sc.nextInt();
                                                     if (sessState == 1)
-                                                        sess.setSessionState(SessionState.Running);
+                                                        session.setSessionState(SessionState.Running);
                                                     if (sessState == 2)
-                                                        sess.setSessionState(SessionState.Achieved);
+                                                        session.setSessionState(SessionState.Achieved);
                                                     if (sessState == 3)
-                                                        sess.setSessionState(SessionState.Canceled);
+                                                        session.setSessionState(SessionState.Canceled);
                                                     if (sessState == 4)
-                                                        sess.setSessionState(SessionState.Delayed);
+                                                        session.setSessionState(SessionState.Delayed);
 
 
                                                 } while ((sessState < 1) || (sessState > 4));
@@ -417,16 +433,18 @@ public class Main {
                                                     System.out.println("session type: \n 1: normal \n 2: catching-up \n 3: support \n 4: training ");
                                                     sessType = sc.nextInt();
                                                     if (sessType == 1)
-                                                        sess.setSessionType(SessionType.Normal);
+                                                        session.setSessionType(SessionType.Normal);
                                                     if (sessType == 2)
-                                                        sess.setSessionType(SessionType.Catching_up);
+                                                        session.setSessionType(SessionType.Catching_up);
                                                     if (sessType == 3)
-                                                        sess.setSessionType(SessionType.Support);
+                                                        session.setSessionType(SessionType.Support);
                                                     if (sessType == 4)
-                                                        sess.setSessionType(SessionType.Training);
+                                                        session.setSessionType(SessionType.Training);
                                                 } while ((sessType < 1) || (sessType > 4));
 
 
+
+                                                module.addSession(session);
                                                 System.out.println("session added successfully");
                                                 break;
                                             case 2:
@@ -437,19 +455,19 @@ public class Main {
                                                 String sessionFeature = sc.next();
                                                 System.out.println("what is the new info that you want to add?");
                                                 String sessionNewInfo = sc.next();
-                                                module2.updateSession(sessionId, Module.SessionComponents.valueOf(sessionFeature), sessionNewInfo);
+                                                module.updateSession(sessionId, Module.SessionComponents.valueOf(sessionFeature), sessionNewInfo);
                                                 break;
                                             case 3:
                                                 //remove a session
                                                 System.out.println("session id: ");
                                                 int sessRemovId = sc.nextInt();
-                                                module2.removeSession(sessRemovId);
+                                                module.removeSession(sessRemovId);
                                                 break;
                                             case 4:
                                                 //find session details
                                                 System.out.println("session id: ");
                                                 int sessShowId = sc.nextInt();
-                                                module2.getSession(sessShowId);
+                                                module.getSession(sessShowId);
                                                 break;
                                             case 5:
                                                 //find a session by criteria
@@ -457,19 +475,19 @@ public class Main {
                                                 String criteria = sc.next();
                                                 System.out.println("what is the content of the criteria?  ");
                                                 String criteriaCont = sc.next();
-                                                module2.getSessionByCriteria(Module.SessionComponents.valueOf(criteria), criteriaCont);
+                                                module.getSessionByCriteria(Module.SessionComponents.valueOf(criteria), criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllSessions
-                                                System.out.println(module2.getSessions());
+                                                System.out.println(module.getSessions());
                                                 break;
                                             case 7:
                                                 //return to menu ManageSessionsMenu
-                                                ManageSessionsMenu();
+                                                ManageSessionsMenu.ManageSessionsMenu();
                                                 break;
                                             case 8:
                                                 //return to AdminActionMenu
-                                                AdminActionMenu.adminActionMenu();
+                                                AdminActionMenu.AdminActionMenu();
                                                 break;
                                             default:
                                                 System.exit(0);
@@ -480,25 +498,26 @@ public class Main {
 
                                 case 5:
                                     //manage modules
-                                    Group group = new Group();
+
                                     int modulesMngChoice;
                                     do{
                                         modulesMngChoice = ManageModulesMenu();
                                         switch(modulesMngChoice){
                                             case 1:
                                                 //add a module
-                                                Module module3 = new Module();
+
                                                 System.out.println("module name: ");
-                                                module3.setName(sc.nextLine());
+                                                module.setName(sc.nextLine());
                                                 System.out.println("module due: ");
-                                                module3.setDue(sc.nextFloat());
-                                                System.out.println("study level: ");
-                                                module3.setStudyLevel(sc.nextLine());
+                                                module.setDue(sc.nextFloat());
+                                                    System.out.println("study level: ");
+                                                module.setStudyLevel(sc.nextLine());
                                                 do{
                                                     System.out.println("module type: optional / required ");
-                                                    module3.setModuleType(ModuleType.valueOf(sc.nextLine()));
+                                                    module.setModuleType(ModuleType.valueOf(sc.nextLine()));
                                                 }while(((sc.nextLine()) != "optional") || ((sc.nextLine()) != "required"));
 
+                                                grp.addModule(module);
                                                 break;
                                             case 2:
                                                 //update an existing module
@@ -508,19 +527,19 @@ public class Main {
                                                 String moduleFeature = sc.next();
                                                 System.out.println("what is the new info that you want to add?");
                                                 String moduleNewInfo = sc.next();
-                                                group.updateModule(moduleId, Group.ModuleComponents.valueOf(moduleFeature), moduleNewInfo);
+                                                grp.updateModule(moduleId, Group.ModuleComponents.valueOf(moduleFeature), moduleNewInfo);
                                                 break;
                                             case 3:
                                                 //remove a module
                                                 System.out.println("module id: ");
                                                 int modRemovId = sc.nextInt();
-                                                group.removeModule(modRemovId);
+                                                grp.removeModule(modRemovId);
                                                 break;
                                             case 4:
                                                 //find module details
                                                 System.out.println("module id: ");
                                                 int modShowId = sc.nextInt();
-                                                group.getModule(modShowId);
+                                                grp.getModule(modShowId);
                                                 break;
                                             case 5:
                                                 //find a module by criteria
@@ -528,11 +547,11 @@ public class Main {
                                                 String criteria = sc.next();
                                                 System.out.println("what is the content of the criteria?  ");
                                                 String criteriaCont = sc.next();
-                                                group.getModuleByCriteria(Group.ModuleComponents.valueOf(criteria),criteriaCont);
+                                                grp.getModuleByCriteria(Group.ModuleComponents.valueOf(criteria),criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllModules
-                                                System.out.println(group.getGroupModules());
+                                                System.out.println(grp.getGroupModules());
                                                 break;
                                             case 7:
                                                 //affect a group to a module
@@ -558,11 +577,11 @@ public class Main {
                                                 break;
                                             case 9:
                                                 //return to menu ManageModulesMenu
-                                                ManageModulesMenu();
+                                                ManageModulesMenu.ManageModulesMenu();
                                                 break;
                                             case 10:
                                                 //return to AdminActionMenu
-                                                AdminActionMenu.adminActionMenu();
+                                                AdminActionMenu.AdminActionMenu();
                                             default:
                                                 System.exit(0);
 
@@ -577,7 +596,7 @@ public class Main {
                     case 2:
                         //teacher actions : perform some statistics
                         int teacherActionChoice = teacherActionsMenu();
-                        Module module = new Module();
+
                         do {
                             switch (teacherActionChoice) {
                                 case 1:
