@@ -10,7 +10,6 @@ import projectMenu.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import static projectMenu.AdminActionMenu.AdminActionMenu;
@@ -90,8 +89,8 @@ public class Main {
                                                         ((Student) p).setStudentSituation(StudentSituation.other);
                                                 } while ((stdSituation < 1) || (stdSituation > 4));
 
-//                                                System.out.println("birthday: (year-month-day) ");
-//                                                ((Student) p).setBirthday(LocalDate.parse(sc.nextLine()));
+                                                System.out.println("birthday: (year-month-day) ");
+                                                ((Student) p).setBirthday(LocalDate.parse(sc.nextLine()));
                                                 System.out.println("do you want to add an absence for this student?");
                                                 System.out.println("type: Y:yes or N:No");
                                                 char response = sc.next().charAt(0);
@@ -288,6 +287,8 @@ public class Main {
                                                 grp.setEmail(sc.nextLine());
                                                 System.out.println("study level: ");
                                                 grp.setStudyLevel(sc.nextLine());
+
+                                                module.getGroups().add(grp);
                                                 System.out.println("group added successfully");
                                                 break;
                                             case 2:
@@ -371,11 +372,11 @@ public class Main {
                                                 //add a session
 
                                                 System.out.println("session start time : ");
-//                                                LocalTime startTime = LocalTime.parse(sc.nextLine());
-                                                session.setStartTime(LocalTime.parse(sc.nextLine()));
+                                                LocalTime startTime = LocalTime.parse(sc.nextLine());
+                                                session.setStartTime(startTime);
                                                 System.out.println("session end time: ");
-//                                                LocalTime endTime = LocalTime.parse(sc.nextLine());
-                                                session.setEndTime(LocalTime.parse(sc.nextLine()));
+                                                LocalTime endTime = LocalTime.parse(sc.nextLine());
+                                                session.setEndTime(endTime);
 
                                                 System.out.println("online or in person session?  ");
                                                 System.out.println("type: 'o': online");
