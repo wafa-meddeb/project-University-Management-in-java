@@ -26,114 +26,6 @@ public class Main {
 
         public static void main(String[] args) {
 
-            ArrayList < Module> modulesList= new ArrayList <>();
-            ArrayList<Session> sessionsList =new ArrayList<>();
-            ArrayList<Teacher> teachersList =new ArrayList<>();
-            ArrayList<Student> studentsList =new ArrayList<>();
-            ArrayList<Absence> absenceslist = new ArrayList<>();
-            ArrayList<Module> moduleslist = new ArrayList<>();
-            ArrayList<Group> groupsList =new ArrayList<>();
-
-
-            ArrayList<Group> groupsListModule1 =new ArrayList<>();
-            ArrayList<Group> groupsListModule2 =new ArrayList<>();
-
-
-            Group group1=new Group("grp1",20,"2021-2022-2Lmad1@esprit.tn","2lmad",moduleslist,studentsList,teachersList);
-            Group group2=new Group("grp2",18,"2021-2022-2Lmad2@esprit.tn","2lmad",moduleslist,studentsList,teachersList);
-            groupsList.add(group1);
-            groupsList.add(group2);
-            System.out.println(groupsList);
-
-
-            Module module1 = new Module("algebre",36.5f,"2lmad",ModuleType.Required,sessionsList,teachersList,groupsListModule1);
-            modulesList.add(module1);
-            System.out.println("******************* Modules ******************************");
-            System.out.println(modulesList);
-            System.out.println("-------- Modules group 1 --------");
-            group1.getGroupModules().add(module1);
-            System.out.println(group1.getGroupModules());
-            System.out.println("-------- Modules group 2 --------");
-            group2.getGroupModules().add(module1);
-            System.out.println(group2.getGroupModules());
-
-
-
-
-            Session session = new Session();
-            Session session1 = new Session(LocalTime.parse("10:00:00"),LocalTime.parse("11:20:00"),"E-1-2",null,null,null,SessionState.Running,SessionType.Catching_up,module1,session.getAbsenceBySession());
-            Session session2 = new Session(LocalTime.parse("13:00:00"),LocalTime.parse("14:20:00"),"A-1-2",null,null,null,SessionState.Running,SessionType.Catching_up,module1,session.getAbsenceBySession());
-            sessionsList.add(session1);
-            sessionsList.add(session2);
-            System.out.println("*************** Sessions ******************************");
-            System.out.println(sessionsList);
-
-            module1.getSessions().add(session1);
-            module1.getSessions().add(session2);
-            System.out.println("-------- Module 1 sessions --------");
-            System.out.println(module1.getSessions());
-
-            module1.getGroups().add(group1);
-            module1.getGroups().add(group2);
-            System.out.println("-------- Module 1 groups ------------");
-            System.out.println(module1.getGroups());
-            Student student = new Student();
-            Student std1 = new Student("ines","said","ImagePath",StudentState.Present,StudentSituation.New,student.getStudentAbsence(), LocalDate.of(2000,05,19),group1);
-            Student std2 = new Student("saief","meddeb","ImagePath",StudentState.Present,StudentSituation.New,student.getStudentAbsence(), LocalDate.of(1994,05,12),group2);
-            studentsList.add(std1);
-            studentsList.add(std2);
-            System.out.println("*************** Students ******************************");
-            System.out.println(studentsList); //prob affichage id
-            group1.getStudents().add(std1);
-            System.out.println("-------- group 1 students ----------");
-            System.out.println(group1.getStudents());
-            group2.getStudents().add(std2);
-            System.out.println("-------- group 2 students ----------");
-            System.out.println(group2.getStudents());
-
-
-
-
-
-            Teacher teacher1 = new Teacher("ali","mhethbi","photoPath","ali.mhethbi@gmail.com","ali.mhethbi@esprit.com",8);
-            Teacher teacher2 = new Teacher("ali","mwelhi","photoPath","ali.mwelhi@gmail.com","ali.mwelhi@esprit.com",8);
-            teachersList.add(teacher1);
-            teachersList.add(teacher2);
-            System.out.println("*************** Teachers ******************************");
-            System.out.println(teachersList); //prob affichage id
-
-            group1.getTeachersByGroup().add(teacher1);
-            System.out.println("-------- group 1 teachers ----------");
-            System.out.println(group1.getTeachersByGroup());
-
-            group2.getTeachersByGroup().add(teacher2);
-            System.out.println("-------- group 2 teachers ----------");
-            System.out.println(group2.getTeachersByGroup());
-
-
-            module1.getTeachers().add(teacher1);
-            module1.getTeachers().add(teacher2);
-            System.out.println("------ Module 1 teachers -------");
-            System.out.println(module1.getTeachers());
-
-            Absence absence = new Absence();
-            Absence absence1 =new Absence(LocalDate.of(2022,11,19),null,null,absence.getSessionsWithAbsence());
-            Absence absence2 = new Absence(LocalDate.of(2022,11,25),null,null,absence.getSessionsWithAbsence());
-            absenceslist.add(absence1);
-            absenceslist.add(absence2);
-            System.out.println("*************** Absences ******************************");
-            System.out.println(absenceslist);
-
-            session1.getAbsenceBySession().add(absence1);
-            session1.getAbsenceBySession().add(absence2);
-            System.out.println("-------- session1 absences ---------");
-            System.out.println(session1.getAbsenceBySession());
-
-            absence1.getSessionsWithAbsence().add(session1);
-            System.out.println("------ session 1 with absence -------");
-
-            std1.getStudentAbsence().add(absence1);
-
 
             //menu
             int firstChoice;
@@ -155,35 +47,63 @@ public class Main {
                                     int stdMngChoice;
                                     do{
                                         stdMngChoice = ManageStudentsMenu();
-                                        switch(stdMngChoice){
+                                        switch(stdMngChoice) {
                                             case 1:
                                                 //add a student
                                                 p = new Student();
                                                 System.out.println("first Name: ");
-                                                ((Student)p).setName(sc.nextLine());
+                                                ((Student) p).setName(sc.nextLine());
                                                 System.out.println("last Name: ");
-                                                ((Student)p).setFamilyName(sc.nextLine());
+                                                ((Student) p).setFamilyName(sc.nextLine());
                                                 System.out.println("photo url: ");
-                                                ((Student)p).setPhoto(sc.nextLine());
+                                                ((Student) p).setPhoto(sc.nextLine());
 
-//                                                do {
-//                                                    System.out.println("student state: Present / Absent / Delayed / Excluded ");
-//                                                    ((Student)p).setStudentState(StudentState.valueOf(sc.next()));
-//                                                }while (((sc.nextLine()) != "Present") || ((sc.nextLine()) != "Absent") || ((sc.nextLine()) != "Delayed") || ((sc.nextLine()) != "Excluded"));
-//
-//                                                do{
-//                                                    System.out.println("student situatione: New / Repeating / Derogatory / other ");
-//                                                    ((Student)p).setStudentSituation(StudentSituation.valueOf(sc.nextLine()));
-//                                                }while(((sc.nextLine()) != "New") || ((sc.nextLine()) != "Repeating") || ((sc.nextLine()) != "Derogatory") || ((sc.nextLine()) != "other"));
+                                                int stdState;
+                                                do {
+                                                    System.out.println("student state: \n 1: Present \n 2: Absent \n 3: Delayed \n 4: Excluded ");
+                                                    stdState = sc.nextInt();
+                                                    if (stdState == 1)
+                                                        ((Student) p).setStudentState(StudentState.Present);
+                                                    else if (stdState == 2)
+                                                        ((Student) p).setStudentState(StudentState.Absent);
+                                                    else if (stdState == 3)
+                                                        ((Student) p).setStudentState(StudentState.Delayed);
+                                                    else
+                                                        ((Student) p).setStudentState(StudentState.Excluded);
+                                                } while ((stdState < 1) || (stdState > 4));
+
+
+                                                int stdSituation;
+                                                do {
+                                                    System.out.println("student situation: New / Repeating / Derogatory / other ");
+                                                    stdSituation = sc.nextInt();
+                                                    if (stdSituation == 1)
+                                                        ((Student) p).setStudentSituation(StudentSituation.New);
+                                                    if (stdSituation == 2)
+                                                        ((Student) p).setStudentSituation(StudentSituation.Repeating);
+                                                    if (stdSituation == 3)
+                                                        ((Student) p).setStudentSituation(StudentSituation.Derogatory);
+                                                    if (stdSituation == 4)
+                                                        ((Student) p).setStudentSituation(StudentSituation.other);
+                                                } while ((stdSituation < 1) || (stdSituation > 4));
 
                                                 System.out.println("birthday: (year-month-day) ");
-                                                ((Student)p).setBirthday(LocalDate.parse(sc.nextLine()));
-                                                System.out.println("absence list: ");
-                                                System.out.println("what is the date of the absence? ");
-                                                newAbsence.setDate((LocalDate.parse(sc.nextLine())));
-                                                ((Student)p).addAbsence(newAbsence);
+                                                ((Student) p).setBirthday(LocalDate.parse(sc.nextLine()));
+                                                System.out.println("do you want to add an absence for this student?");
+                                                System.out.println("type: Y:yes or N:No");
+                                                char response = sc.next().charAt(0);
+                                                if (response == 'Y') {
+                                                    System.out.println("absence list: ");
+                                                    System.out.println("what is the date of the absence? ");
+                                                    newAbsence.setDate((LocalDate.parse(sc.nextLine())));
+                                                    ((Student) p).addAbsence(newAbsence);
+                                                } else
+                                                    newAbsence = null;
+                                                ((Student) p).addAbsence(newAbsence);
+
+
                                                 System.out.println("group name: ");
-                                                ((Student)p).getGroup().setName(sc.next());
+                                                ((Student) p).getGroup().setName(sc.next());
                                                 System.out.println("student added successfully");
 
                                                 break;
@@ -196,7 +116,7 @@ public class Main {
                                                 String stdFeature = sc.next();
                                                 System.out.println("what is the new info that you want to add?");
                                                 String stdNewInfo = sc.next();
-                                                grp.updateStudent(stdId,StudentComponents.valueOf(stdFeature),stdNewInfo);
+                                                grp.updateStudent(stdId, StudentComponents.valueOf(stdFeature), stdNewInfo);
 
 
                                                 break;
@@ -224,7 +144,7 @@ public class Main {
                                                 String criteria = sc.next();
                                                 System.out.println("what is the content of the criteria?  ");
                                                 String criteriaCont = sc.next();
-                                                g.getStudentByCriteria(StudentComponents.valueOf(criteria),criteriaCont);
+                                                g.getStudentByCriteria(StudentComponents.valueOf(criteria), criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllStudents
@@ -440,7 +360,7 @@ public class Main {
                                     Module module2 = new Module();
                                     do{
                                         sessionsMngChoice = ManageSessionsMenu();
-                                        switch(sessionsMngChoice){
+                                        switch(sessionsMngChoice) {
                                             case 1:
                                                 //add a session
                                                 Session sess = new Session();
@@ -452,15 +372,13 @@ public class Main {
                                                 System.out.println("online or in person session?  ");
                                                 System.out.println("type: 'o': online");
                                                 System.out.println("type: 'p': in person");
-                                                Character response =sc.next().charAt(0);
-                                                if ((Character.toUpperCase(response))=='O'){
+                                                Character response = sc.next().charAt(0);
+                                                if ((Character.toUpperCase(response)) == 'P') {
                                                     System.out.println("classroom number ");
                                                     String classNbre = sc.nextLine();
-                                                }
-                                                else{
+                                                } else {
                                                     String classNbre = null;
                                                 }
-
 
                                                 System.out.println("session Goal: ");
                                                 String goal = sc.nextLine();
@@ -470,24 +388,43 @@ public class Main {
                                                 System.out.println("do you want to enter information about the tools used during the session?  ");
                                                 System.out.println("type: 'y': yes");
                                                 System.out.println("type: 'n': no");
-                                                Character res =sc.next().charAt(0);
-                                                if ((Character.toUpperCase(res))=='Y'){
+                                                Character res = sc.next().charAt(0);
+                                                if ((Character.toUpperCase(res)) == 'Y') {
                                                     System.out.println("tools: ");
                                                     String tools = sc.nextLine();
-                                                }
-                                                else{
+                                                } else {
                                                     String tools = null;
                                                 }
 
-//                                                do {
-//                                                    System.out.println("session state: running / achieved / canceled / delayed ");
-//                                                    String sessState = sc.nextLine() ;
-//                                                }while (((sc.nextLine()) != "present") || ((sc.nextLine()) != "absent") || ((sc.nextLine()) != "delayed") || ((sc.nextLine()) != "excluded"));
-//
-//                                                do{
-//                                                    System.out.println("session type: normal / catching-up / support / training ");
-//                                                    ((Student)p).setStudentSituation(StudentSituation.valueOf(sc.nextLine()));
-//                                                }while(((sc.nextLine()) != "new") || ((sc.nextLine()) != "repeating") || ((sc.nextLine()) != "derogatory") || ((sc.nextLine()) != "other"));
+                                                int sessState;
+                                                do {
+                                                    System.out.println("session state: \n 1: running \n 2:  achieved  \n 3: canceled \n 4: delayed ");
+                                                    sessState = sc.nextInt();
+                                                    if (sessState == 1)
+                                                        sess.setSessionState(SessionState.Running);
+                                                    if (sessState == 2)
+                                                        sess.setSessionState(SessionState.Achieved);
+                                                    if (sessState == 3)
+                                                        sess.setSessionState(SessionState.Canceled);
+                                                    if (sessState == 4)
+                                                        sess.setSessionState(SessionState.Delayed);
+
+
+                                                } while ((sessState < 1) || (sessState > 4));
+
+                                                int sessType;
+                                                do {
+                                                    System.out.println("session type: \n 1: normal \n 2: catching-up \n 3: support \n 4: training ");
+                                                    sessType = sc.nextInt();
+                                                    if (sessType == 1)
+                                                        sess.setSessionType(SessionType.Normal);
+                                                    if (sessType == 2)
+                                                        sess.setSessionType(SessionType.Catching_up);
+                                                    if (sessType == 3)
+                                                        sess.setSessionType(SessionType.Support);
+                                                    if (sessType == 4)
+                                                        sess.setSessionType(SessionType.Training);
+                                                } while ((sessType < 1) || (sessType > 4));
 
 
                                                 System.out.println("session added successfully");
@@ -520,7 +457,7 @@ public class Main {
                                                 String criteria = sc.next();
                                                 System.out.println("what is the content of the criteria?  ");
                                                 String criteriaCont = sc.next();
-                                                module2.getSessionByCriteria(Module.SessionComponents.valueOf(criteria),criteriaCont);
+                                                module2.getSessionByCriteria(Module.SessionComponents.valueOf(criteria), criteriaCont);
                                                 break;
                                             case 6:
                                                 //displayAllSessions
@@ -640,30 +577,39 @@ public class Main {
                     case 2:
                         //teacher actions : perform some statistics
                         int teacherActionChoice = teacherActionsMenu();
+                        Module module = new Module();
                         do {
                             switch (teacherActionChoice) {
                                 case 1:
                                     //absenteeism by one group
                                     int studentsAbsenteeisme =0;
 
-                                    for(int i = 0;i<group1.getStudents().size();i++){
-                                        studentsAbsenteeisme += group1.getStudents().get(i).getStudentAbsence().size();
+                                    System.out.println("******absenteeism rate by one group******");
+                                    System.out.println("enter the group id: ");
+                                    int choix = sc.nextInt();
+
+                                    for(int i = 0;i<module.getGroups().get(choix-1).getStudents().size();i++){
+
+                                        studentsAbsenteeisme += module.getGroups().get(choix-1).getStudents().get(i).getStudentAbsence().size();
 
 
                                     }
-                                    System.out.println("moy d'absence par grp= "+ studentsAbsenteeisme/group1.getStudentsNumber());
+                                    System.out.println("mean of absence by group = "+ studentsAbsenteeisme/module.getGroups().get(choix-1).getStudentsNumber());
                                     break;
                                 case 2:
                                     //absenteeism by  groups
+                                    int totalStdNbre = 0;
                                     int absenteeismByGrps =0;
                                     int grpListAbsenteeism =0;
-                                    for(int i=0;i<groupsList.size();i++){
-                                        for(int j=0;i<groupsList.get(j).getStudents().size();j++){
-                                            grpListAbsenteeism += groupsList.get(j).getStudents().get(j).getStudentAbsence().size();
+                                    for(int i=0;i<module.getGroups().size();i++){
+                                        for(int j=0;i<module.getGroups().get(j).getStudents().size();j++){
+                                            grpListAbsenteeism += module.getGroups().get(j).getStudents().get(j).getStudentAbsence().size();
+
                                         }
+                                        totalStdNbre += module.getGroups().get(i).getStudentsNumber();
                                     }
-                                    int totalStdNbre = group1.getStudentsNumber()+group2.getStudentsNumber();
-                                    System.out.println("moy d'absence par grp= "+ grpListAbsenteeism/totalStdNbre);
+
+                                    System.out.println("mean of absence by groups = "+ grpListAbsenteeism/totalStdNbre);
 
 
                                     break;
@@ -683,7 +629,5 @@ public class Main {
             }while(firstChoice !=3);
 
         }
-        public void stdStatic (){
 
-        }
     }

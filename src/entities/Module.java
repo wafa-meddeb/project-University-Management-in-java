@@ -16,7 +16,7 @@ import java.util.List;
 public class Module implements ModuleInterface {
 
     private int id;
-    private /*static*/ String name;
+    private String name;
     private float due;
     private String studyLevel;
     private ModuleType moduleType;
@@ -195,9 +195,6 @@ public class Module implements ModuleInterface {
     public Teacher getTeacher(int index) {
         return teachers.get(index);
     }
-
-    //getAllTeachers() n3mlou appel lel getter mta3 arraylist teachersByGroup
-
 
 
     @Override
@@ -385,10 +382,6 @@ public class Module implements ModuleInterface {
         return groups.get(index);
     }
 
-//    @Override
-//    public List<Group> getAllGroups() {
-//        return null;
-//    }
 
     @Override
     public List<Group> getGroupByCriteria(Module.GroupComponents criteria, Object criteriaContent) {

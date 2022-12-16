@@ -90,12 +90,5 @@ public class ModuleTeacher {
 
     }
 
-//    public void getModuleGrpByCriteria(Object obj){
-//        for(int i=0 ;i<moduleGrpLst.size();i++){
-//
-//
-//        }
-//
-//    }
 
 }

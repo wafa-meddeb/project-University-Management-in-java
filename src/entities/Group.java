@@ -198,8 +198,6 @@ public class Group implements GroupInterface {
         return students.get(index);
     }
 
-    //getAllStd appel lel getter mta3 arraylist student
-    //System.out.println(students.get())
 
     @Override
     public List<Student> getStudentByCriteria(StudentComponents criteria,Object criteriaContent) {
@@ -294,7 +292,6 @@ public class Group implements GroupInterface {
         return teachersByGroup.get(index);
     }
 
-    //getAllTeachers() n3mlou appel lel getter mta3 arraylist teachersByGroup
 
     @Override
     public List<Teacher> getTeacherByCriteria(TeacherComponents criteria,Object criteriaContent) {

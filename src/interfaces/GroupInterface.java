@@ -22,7 +22,7 @@ public interface GroupInterface {
     public void removeTeacher(int index);
     public void updateTeacher(int index, Group.TeacherComponents featureToUpdate, Object newInfo);
     public Teacher getTeacher(int index);
-    //getAllTeachers() n3mlou appel lel getter mta3 arraylist teachersByGroup
+
     public List<Teacher> getTeacherByCriteria(Group.TeacherComponents criteria, Object criteriaContent);
 
     //modules' crud
@@ -30,7 +30,7 @@ public interface GroupInterface {
     public void removeModule(int index);
     public void updateModule(int index, Group.ModuleComponents featureToUpdate, Object newInfo);
     public Module getModule(int index);
-    //getAllModules() n3mlou appel lel getter mta3 arraylist groupModules
+
     public List<Module> getModuleByCriteria(Group.ModuleComponents criteria, Object criteriaContent);
 
 

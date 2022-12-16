@@ -19,7 +19,7 @@ public interface ModuleInterface {
     public void removeSession(int index);
     public void updateSession(int index, Module.SessionComponents featureToUpdate, Object newInfo);
     public Session getSession(int index);
-//    public List<Session> getAllSessions();
+
     public List<Session> getSessionByCriteria(Module.SessionComponents criteria, Object criteriaContent);
 
 
@@ -28,7 +28,7 @@ public interface ModuleInterface {
     public void removeGroup(int index);
     public void updateGroup(int index, Module.GroupComponents featureToUpdate, Object newInfo);
     public Group getGroup(int index);
-//    public List<Group> getAllGroups();
+
     public List<Group> getGroupByCriteria(Module.GroupComponents criteria, Object criteriaContent);
 
 }

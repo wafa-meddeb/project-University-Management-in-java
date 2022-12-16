@@ -20,6 +20,6 @@ public interface TeacherInterface {
     public void removeModule(int index);
     public void updateModule(int index, Teacher.ModuleComponents featureToUpdate, Object newInfo);
     public Module getModule(int index);
-    //getAllModules() n3mlou appel lel getter mta3 arraylist groupModules
+
     public List<Module> getModuleByCriteria(Group.ModuleComponents criteria, Object criteriaContent);
 }
