@@ -10,6 +10,7 @@ import projectMenu.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import static projectMenu.AdminActionMenu.AdminActionMenu;
@@ -28,7 +29,7 @@ public class Main {
             //menu
             int firstChoice;
             Person p;
-            Absence newAbsence = null ;
+            Absence newAbsence = new Absence() ;
             Scanner sc = new Scanner(System.in);
             Group grp = new Group();
             Module module = new Module();
@@ -89,22 +90,26 @@ public class Main {
                                                         ((Student) p).setStudentSituation(StudentSituation.other);
                                                 } while ((stdSituation < 1) || (stdSituation > 4));
 
-                                                System.out.println("birthday: (year-month-day) ");
-                                                ((Student) p).setBirthday(LocalDate.parse(sc.nextLine()));
+//                                                System.out.println("birthday: (year-month-day) ");
+//                                                LocalDate birth = LocalDate.parse(sc.nextLine());
+//                                                ((Student) p).setBirthday(birth);
                                                 System.out.println("do you want to add an absence for this student?");
                                                 System.out.println("type: Y:yes or N:No");
                                                 char response = sc.next().charAt(0);
                                                 if (response == 'Y') {
                                                     System.out.println("absence list: ");
                                                     System.out.println("what is the date of the absence? ");
-                                                    newAbsence.setDate((LocalDate.parse(sc.nextLine())));
+                                                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                                                    sc.nextLine();
+                                                    LocalDate absDate = LocalDate.parse(sc.nextLine(),dtf);
+                                                    newAbsence.setDate(absDate);
                                                     ((Student) p).addAbsence(newAbsence);
                                                 } else
                                                     newAbsence = null;
                                                 ((Student) p).addAbsence(newAbsence);
 
-                                                System.out.println("group name: ");
-                                                ((Student) p).getGroup().setName(sc.nextLine());
+//                                                System.out.println("group name: ");
+//                                                ((Student) p).getGroup().setName(sc.nextLine());
 
                                                 grp.addStudent((Student) p);
                                                 System.out.println("student added successfully");

@@ -26,6 +26,7 @@ public class Student extends Person implements StudentInterface {
     private static int lastId = 0;
     public Student() {
         this.id=++lastId;
+
     }
 
 
